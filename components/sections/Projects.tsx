@@ -27,6 +27,16 @@ function getExpandDir(cardIndex: number, cols: number): ExpandDir {
   return 'center'
 }
 
+// Returns per-card height classes for a side column in center-expand mode.
+// n=1 → fixed 180px; n=2 → first fixed 180px + last stretches; n>=3 → all flex-1
+function columnHeights(n: number): ('fixed' | 'grow')[] {
+  if (n <= 0) return []
+  if (n === 1) return ['fixed']
+  const naturalH = n * 180 + (n - 1) * 8
+  if (naturalH <= 460) return [...Array(n - 1).fill('fixed'), 'grow']
+  return Array(n).fill('grow')
+}
+
 // ── Card content: collapsed (grid + mini-grid) ────────────────────────────────
 
 function CollapsedCard({ project }: { project: Project }) {
@@ -144,15 +154,17 @@ function OthersMiniGrid({
   setActiveId: (id: string | null) => void
 }) {
   const miniCols: 1 | 2 = others.length <= 2 ? 1 : 2
+  const lastAlone = miniCols === 2 && others.length % 2 !== 0
   return (
     <div className={`flex-1 grid gap-2 ${miniColsMap[miniCols]} auto-rows-[1fr] min-h-0`}>
-      {others.map((p) => (
+      {others.map((p, i) => (
         <motion.article
           key={p.id}
           layoutId={`proj-${p.id}`}
-          className="rounded-2xl overflow-hidden cursor-pointer
+          className={`rounded-2xl overflow-hidden cursor-pointer
             bg-cream-50 dark:bg-dark-surface-2
-            border border-cream-200/60 dark:border-dark-border"
+            border border-cream-200/60 dark:border-dark-border
+            ${lastAlone && i === others.length - 1 ? 'col-span-2' : ''}`}
           onClick={() => setActiveId(String(p.id))}
           whileHover={{ scale: 1.02 }}
           transition={spring}
@@ -182,8 +194,13 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
   const activeIndex = activeId ? projects.findIndex((p) => String(p.id) === activeId) : -1
   const activeProject = activeIndex !== -1 ? projects[activeIndex] : null
 
-  const leftOthers = activeIndex !== -1 ? projects.slice(0, activeIndex) : []
-  const rightOthers = activeIndex !== -1 ? projects.slice(activeIndex + 1) : []
+  const activeCol = activeIndex !== -1 ? activeIndex % cols : -1
+  const leftOthers = activeIndex !== -1
+    ? projects.filter((_, i) => i !== activeIndex && i % cols < activeCol)
+    : []
+  const rightOthers = activeIndex !== -1
+    ? projects.filter((_, i) => i !== activeIndex && i % cols >= activeCol)
+    : []
   const others = projects.filter((p) => String(p.id) !== activeId)
 
   // Determine expand direction, falling back if one side is empty
@@ -266,20 +283,25 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
         {/* ── Mode 3: CENTER expanded ── */}
         {activeId && expandDir === 'center' && (
           <div className="flex gap-3" style={{ height: 460 }}>
-            {/* Left column: cards before active index */}
+            {/* Left column: cards in columns < active column */}
             <div className="flex-1 flex flex-col gap-2 min-h-0">
-              {leftOthers.map((p) => (
-                <motion.article
-                  key={p.id}
-                  layoutId={`proj-${p.id}`}
-                  className={`${cardBase} cursor-pointer flex-1 min-h-0`}
-                  onClick={() => setActiveId(String(p.id))}
-                  whileHover={{ scale: 1.02 }}
-                  transition={spring}
-                >
-                  <CollapsedCard project={p} />
-                </motion.article>
-              ))}
+              {leftOthers.map((p, i) => {
+                const heights = columnHeights(leftOthers.length)
+                return (
+                  <motion.article
+                    key={p.id}
+                    layoutId={`proj-${p.id}`}
+                    className={`${cardBase} cursor-pointer ${
+                      heights[i] === 'fixed' ? 'h-[180px] shrink-0' : 'flex-1 min-h-0'
+                    }`}
+                    onClick={() => setActiveId(String(p.id))}
+                    whileHover={{ scale: 1.02 }}
+                    transition={spring}
+                  >
+                    <CollapsedCard project={p} />
+                  </motion.article>
+                )
+              })}
             </div>
 
             {/* Center: expanded active card */}
@@ -293,20 +315,25 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
               {activeProject && <ExpandedCard project={activeProject} />}
             </motion.article>
 
-            {/* Right column: cards after active index */}
+            {/* Right column: cards in columns >= active column (excluding active) */}
             <div className="flex-1 flex flex-col gap-2 min-h-0">
-              {rightOthers.map((p) => (
-                <motion.article
-                  key={p.id}
-                  layoutId={`proj-${p.id}`}
-                  className={`${cardBase} cursor-pointer flex-1 min-h-0`}
-                  onClick={() => setActiveId(String(p.id))}
-                  whileHover={{ scale: 1.02 }}
-                  transition={spring}
-                >
-                  <CollapsedCard project={p} />
-                </motion.article>
-              ))}
+              {rightOthers.map((p, i) => {
+                const heights = columnHeights(rightOthers.length)
+                return (
+                  <motion.article
+                    key={p.id}
+                    layoutId={`proj-${p.id}`}
+                    className={`${cardBase} cursor-pointer ${
+                      heights[i] === 'fixed' ? 'h-[180px] shrink-0' : 'flex-1 min-h-0'
+                    }`}
+                    onClick={() => setActiveId(String(p.id))}
+                    whileHover={{ scale: 1.02 }}
+                    transition={spring}
+                  >
+                    <CollapsedCard project={p} />
+                  </motion.article>
+                )
+              })}
             </div>
           </div>
         )}
