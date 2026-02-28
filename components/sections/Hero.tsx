@@ -2,8 +2,9 @@
 
 import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
-import { ArrowDown, Github, Linkedin, MapPin, Mail } from 'lucide-react'
+import { Github, Linkedin, MapPin, Mail } from 'lucide-react'
 import type { Profile } from '@/lib/types'
+import type { PanelId } from '@/components/layout/PortfolioShell'
 
 const RobotScene = dynamic(() => import('@/components/three/RobotScene'), {
   ssr: false,
@@ -28,14 +29,14 @@ const item = {
 
 interface HeroProps {
   profile: Profile
+  setActivePanel: (id: PanelId) => void
 }
 
-export function Hero({ profile }: HeroProps) {
+export function Hero({ profile, setActivePanel }: HeroProps) {
   return (
-    <section id="hero" className="relative overflow-hidden dot-grid py-12 lg:py-16 min-h-[90vh] flex items-center">
-      {/* Ambient glows */}
+    <section id="hero" className="relative overflow-hidden h-full flex items-center py-12 lg:py-16">
+      {/* Single amber glow top-right */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-300/10 dark:bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-violet-300/8 dark:bg-violet-500/4 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-5xl mx-auto px-6 w-full">
         <div className="grid lg:grid-cols-[1fr_360px] gap-10 lg:gap-12 items-center">
@@ -82,13 +83,12 @@ export function Hero({ profile }: HeroProps) {
 
             {/* CTAs */}
             <motion.div variants={item} className="flex flex-wrap gap-3 pt-1">
-              <a
-                href="#work"
+              <button
+                onClick={() => setActivePanel('work')}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-600 dark:bg-amber-500 text-white font-medium text-sm shadow-sm hover:bg-amber-700 dark:hover:bg-amber-600 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
               >
                 View my work
-                <ArrowDown size={14} />
-              </a>
+              </button>
               <a
                 href={profile.github}
                 target="_blank"
@@ -136,41 +136,12 @@ export function Hero({ profile }: HeroProps) {
             transition={{ duration: 1, delay: 0.3, ease }}
             className="relative hidden lg:block order-2 h-[400px]"
           >
-            {/* Decorative ring */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full border border-dashed border-cream-300 dark:border-dark-border animate-spin-slow opacity-50" />
-
             <div className="w-full h-full">
               <RobotScene />
             </div>
-
-            {/* Floating label */}
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute bottom-10 left-2 px-3 py-1.5 rounded-lg bg-white dark:bg-dark-surface border border-cream-200 dark:border-dark-border shadow-sm text-xs font-mono text-ink-500 dark:text-dark-text-secondary"
-            >
-              👆 Hover &amp; click me
-            </motion.div>
           </motion.div>
 
         </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="mt-14 flex items-center gap-3"
-        >
-          <div className="h-px flex-1 max-w-xs bg-cream-200 dark:bg-dark-border" />
-          <a
-            href="#work"
-            className="flex items-center gap-1.5 text-xs font-mono text-ink-300 dark:text-dark-muted hover:text-amber-500 transition-colors"
-          >
-            scroll down
-            <ArrowDown size={11} className="animate-bounce-soft" />
-          </a>
-        </motion.div>
       </div>
     </section>
   )

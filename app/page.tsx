@@ -1,8 +1,4 @@
-import { Sidebar } from '@/components/layout/Sidebar'
-import { Hero } from '@/components/sections/Hero'
-import { Work } from '@/components/sections/Work'
-import { Skills } from '@/components/sections/Skills'
-import { Contact } from '@/components/sections/Contact'
+import { PortfolioShell } from '@/components/layout/PortfolioShell'
 import {
   seedProfile,
   seedExperience,
@@ -40,14 +36,11 @@ export default async function Home() {
   const { profile, experience, projects, skills } = await getData()
 
   return (
-    <div className="flex min-h-screen bg-cream-100 dark:bg-dark-bg">
-      <Sidebar />
-      <main className="flex-1 lg:ml-[240px] overflow-x-hidden">
-        <Hero profile={profile} />
-        <Work experience={experience} projects={projects} />
-        <Skills skills={skills} profile={profile} />
-        <Contact profile={profile} />
-      </main>
-    </div>
+    <PortfolioShell
+      profile={profile}
+      experience={experience}
+      projects={projects}
+      skills={skills}
+    />
   )
 }

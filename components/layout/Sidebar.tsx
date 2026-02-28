@@ -5,54 +5,26 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from 'next-themes'
 import { Sun, Moon, Menu, X, Github, Linkedin, Twitter } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import type { PanelId } from '@/components/layout/PortfolioShell'
 
-const navLinks = [
-  { label: 'Home', href: '#hero', id: 'hero' },
-  { label: 'Work', href: '#work', id: 'work' },
-  { label: 'Skills', href: '#skills', id: 'skills' },
-  { label: 'Contact', href: '#contact', id: 'contact' },
+const navLinks: { label: string; id: PanelId }[] = [
+  { label: 'Home', id: 'home' },
+  { label: 'Work', id: 'work' },
+  { label: 'Skills', id: 'skills' },
+  { label: 'Contact', id: 'contact' },
 ]
 
-export function Sidebar() {
+interface SidebarProps {
+  activePanel: PanelId
+  setActivePanel: (id: PanelId) => void
+}
+
+export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
   const [mounted, setMounted] = useState(false)
-  const [activeSection, setActiveSection] = useState('hero')
   const [mobileOpen, setMobileOpen] = useState(false)
   const { theme, setTheme } = useTheme()
 
   useEffect(() => setMounted(true), [])
-
-  // IntersectionObserver for active section detection
-  useEffect(() => {
-    const sectionIds = navLinks.map((l) => l.id)
-    const observers: IntersectionObserver[] = []
-    const visible = new Map<string, number>()
-
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id)
-      if (!el) return
-      const obs = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              visible.set(id, entry.boundingClientRect.top)
-            } else {
-              visible.delete(id)
-            }
-            // Pick the topmost visible section
-            if (visible.size > 0) {
-              const topmost = [...visible.entries()].sort((a, b) => a[1] - b[1])[0][0]
-              setActiveSection(topmost)
-            }
-          })
-        },
-        { rootMargin: '-10% 0px -50% 0px' }
-      )
-      obs.observe(el)
-      observers.push(obs)
-    })
-
-    return () => observers.forEach((o) => o.disconnect())
-  }, [])
 
   // Body lock when mobile drawer is open
   useEffect(() => {
@@ -66,21 +38,25 @@ export function Sidebar() {
 
   const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
 
+  const handleNav = (id: PanelId) => {
+    setActivePanel(id)
+    setMobileOpen(false)
+  }
+
   const NavLinks = ({ layoutIdSuffix }: { layoutIdSuffix: string }) => (
     <nav className="flex flex-col gap-0.5">
       {navLinks.map((link) => (
-        <a
+        <button
           key={link.id}
-          href={link.href}
-          onClick={() => setMobileOpen(false)}
+          onClick={() => handleNav(link.id)}
           className={cn(
-            'relative flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors duration-200',
-            activeSection === link.id
+            'relative flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors duration-200 text-left',
+            activePanel === link.id
               ? 'text-ink-900 dark:text-dark-text font-medium'
               : 'text-ink-400 dark:text-dark-muted hover:text-ink-700 dark:hover:text-dark-text-secondary'
           )}
         >
-          {activeSection === link.id && (
+          {activePanel === link.id && (
             <motion.div
               layoutId={`nav-indicator-${layoutIdSuffix}`}
               className="absolute inset-0 rounded-lg bg-cream-200/80 dark:bg-dark-surface"
@@ -88,7 +64,7 @@ export function Sidebar() {
             />
           )}
           <span className="relative z-10">{link.label}</span>
-        </a>
+        </button>
       ))}
     </nav>
   )
@@ -136,7 +112,7 @@ export function Sidebar() {
       {/* ── Desktop Sidebar ── */}
       <aside className="fixed top-0 left-0 z-30 h-screen w-[240px] hidden lg:flex flex-col bg-cream-50 dark:bg-dark-surface border-r border-cream-200 dark:border-dark-border px-4 py-6">
         {/* Logo */}
-        <a href="#hero" className="flex items-center gap-3 mb-8 group">
+        <button onClick={() => handleNav('home')} className="flex items-center gap-3 mb-8 group text-left">
           <div className="w-10 h-10 rounded-xl bg-amber-600 dark:bg-amber-500 flex items-center justify-center text-white font-mono font-bold text-sm shadow-sm shrink-0">
             BP
           </div>
@@ -148,7 +124,7 @@ export function Sidebar() {
               engineer
             </div>
           </div>
-        </a>
+        </button>
 
         {/* Nav */}
         <NavLinks layoutIdSuffix="desktop" />
@@ -220,7 +196,7 @@ export function Sidebar() {
             >
               {/* Header */}
               <div className="flex items-center justify-between mb-8">
-                <a href="#hero" onClick={() => setMobileOpen(false)} className="flex items-center gap-3">
+                <button onClick={() => handleNav('home')} className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-amber-600 dark:bg-amber-500 flex items-center justify-center text-white font-mono font-bold text-sm shadow-sm">
                     BP
                   </div>
@@ -232,7 +208,7 @@ export function Sidebar() {
                       engineer
                     </div>
                   </div>
-                </a>
+                </button>
                 <button
                   onClick={() => setMobileOpen(false)}
                   className="w-8 h-8 rounded-lg flex items-center justify-center text-ink-400 dark:text-dark-muted hover:bg-cream-200/60 dark:hover:bg-dark-surface-2"
