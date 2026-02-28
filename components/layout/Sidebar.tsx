@@ -10,6 +10,7 @@ import type { PanelId } from '@/components/layout/PortfolioShell'
 const navLinks: { label: string; id: PanelId }[] = [
   { label: 'Home', id: 'home' },
   { label: 'Work', id: 'work' },
+  { label: 'Projects', id: 'projects' },
   { label: 'Skills', id: 'skills' },
   { label: 'Contact', id: 'contact' },
 ]

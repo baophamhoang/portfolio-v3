@@ -28,9 +28,9 @@ const vt323 = VT323({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://phambao.dev'),
-  title: 'Bao Pham — Creative Frontend Engineer',
+  title: 'Bao Pham — Software Engineer',
   description:
-    'Frontend engineer passionate about building beautiful, interactive experiences at the intersection of code and design.',
+    'Full-stack software engineer specializing in TypeScript/JavaScript across the entire stack — NestJS APIs, SQS workers, and Next.js frontends.',
   keywords: [
     'Frontend Engineer',
     'Software Engineer',
@@ -49,18 +49,18 @@ export const metadata: Metadata = {
   authors: [{ name: 'Bao Pham' }],
   alternates: { canonical: 'https://phambao.dev' },
   openGraph: {
-    title: 'Bao Pham — Creative Frontend Engineer',
-    description: 'Building beautiful things at the intersection of code and design.',
+    title: 'Bao Pham — Software Engineer',
+    description: 'Building robust systems at the intersection of product, AI, and engineering.',
     type: 'website',
     url: 'https://phambao.dev',
     siteName: 'Bao Pham',
     locale: 'en_US',
-    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Bao Pham — Creative Frontend Engineer' }],
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Bao Pham — Software Engineer' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bao Pham — Creative Frontend Engineer',
-    description: 'Building beautiful things at the intersection of code and design.',
+    title: 'Bao Pham — Software Engineer',
+    description: 'Building robust systems at the intersection of product, AI, and engineering.',
     creator: '@phambao',
     images: ['/opengraph-image'],
   },
@@ -83,7 +83,7 @@ export default function RootLayout({
               name: 'Bao Pham',
               alternateName: 'Pham Hoang Bao',
               url: 'https://phambao.dev',
-              jobTitle: 'Creative Frontend Engineer',
+              jobTitle: 'Software Engineer',
               sameAs: ['https://github.com/baopham', 'https://linkedin.com/in/baopham'],
             }),
           }}

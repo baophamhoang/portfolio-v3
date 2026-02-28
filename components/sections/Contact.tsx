@@ -36,7 +36,7 @@ export function Contact({ profile }: ContactProps) {
 
       {/* Decorative watermark */}
       <div className="absolute top-4 right-6 font-display font-black text-[8rem] leading-none text-ink-900/[0.04] dark:text-white/[0.03] select-none pointer-events-none">
-        04
+        05
       </div>
 
       <div className="relative max-w-5xl mx-auto">
@@ -47,7 +47,7 @@ export function Contact({ profile }: ContactProps) {
           transition={{ duration: 0.5, ease }}
           className="flex items-center gap-3 mb-8"
         >
-          <span className="font-mono text-sm text-amber-600 dark:text-amber-500">04.</span>
+          <span className="font-mono text-sm text-amber-600 dark:text-amber-500">05.</span>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink-900 dark:text-dark-text">
             Get in touch
           </h2>

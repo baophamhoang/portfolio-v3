@@ -5,7 +5,7 @@ import type { Skill, Profile } from '@/lib/types'
 
 const ease = [0.16, 1, 0.3, 1] as const
 
-const categoryOrder = ['Frontend', 'Backend', 'Languages', 'Tools']
+const categoryOrder = ['Frontend', 'Backend', 'Cloud/DevOps', 'AI/Integrations']
 
 interface SkillsProps {
   skills: Skill[]
@@ -26,7 +26,7 @@ export function Skills({ skills, profile }: SkillsProps) {
     <section id="skills" className="relative min-h-full py-10 px-6">
       {/* Decorative watermark */}
       <div className="absolute top-4 right-6 font-display font-black text-[8rem] leading-none text-ink-900/[0.04] dark:text-white/[0.03] select-none pointer-events-none">
-        03
+        04
       </div>
 
       <div className="relative max-w-5xl mx-auto">
@@ -37,7 +37,7 @@ export function Skills({ skills, profile }: SkillsProps) {
           transition={{ duration: 0.5, ease }}
           className="flex items-center gap-3 mb-8"
         >
-          <span className="font-mono text-sm text-amber-600 dark:text-amber-500">03.</span>
+          <span className="font-mono text-sm text-amber-600 dark:text-amber-500">04.</span>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink-900 dark:text-dark-text">
             Skills
           </h2>

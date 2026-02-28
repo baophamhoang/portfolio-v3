@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, LayoutGroup } from 'framer-motion'
 import { ExternalLink, Github, Star } from 'lucide-react'
 import type { Project } from '@/lib/types'
 
@@ -176,6 +176,17 @@ function OthersMiniGrid({
   )
 }
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1024)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+  return isMobile
+}
+
 // ── Main component ────────────────────────────────────────────────────────────
 
 interface ProjectsProps {
@@ -187,6 +198,7 @@ const cardBase =
 
 export function Projects({ projects: rawProjects }: ProjectsProps) {
   const [activeId, setActiveId] = useState<string | null>(null)
+  const isMobile = useIsMobile()
 
   const projects = rawProjects.slice(0, 12)
   const cols = getDefaultCols(projects.length)
@@ -239,7 +251,7 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
 
         {/* ── Mode 1: Grid (no active card) ── */}
         {!activeId && (
-          <div className={`grid ${colsMap[cols]} gap-3 auto-rows-[180px]`}>
+          <div className={`grid grid-cols-2 lg:${colsMap[cols]} gap-3 auto-rows-[160px] lg:auto-rows-[180px]`}>
             {projects.map((p, i) => (
               <motion.article
                 key={p.id}
@@ -257,86 +269,123 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
           </div>
         )}
 
-        {/* ── Mode 2: LEFT or RIGHT expanded ── */}
-        {activeId && expandDir !== 'center' && (
-          <div className="flex gap-3" style={{ height: 460 }}>
-            {expandDir === 'right' && (
-              <OthersMiniGrid others={others} setActiveId={setActiveId} />
-            )}
-
-            <motion.article
-              layoutId={`proj-${activeId}`}
-              className={`${cardBase} cursor-pointer flex-none`}
-              style={{ width: '58%' }}
-              onClick={() => setActiveId(null)}
-              transition={spring}
-            >
-              {activeProject && <ExpandedCard project={activeProject} />}
-            </motion.article>
-
-            {expandDir === 'left' && (
-              <OthersMiniGrid others={others} setActiveId={setActiveId} />
-            )}
-          </div>
-        )}
-
-        {/* ── Mode 3: CENTER expanded ── */}
-        {activeId && expandDir === 'center' && (
-          <div className="flex gap-3" style={{ height: 460 }}>
-            {/* Left column: cards in columns < active column */}
-            <div className="flex-1 flex flex-col gap-2 min-h-0">
-              {leftOthers.map((p, i) => {
-                const heights = columnHeights(leftOthers.length)
-                return (
-                  <motion.article
-                    key={p.id}
-                    layoutId={`proj-${p.id}`}
-                    className={`${cardBase} cursor-pointer ${
-                      heights[i] === 'fixed' ? 'h-[180px] shrink-0' : 'flex-1 min-h-0'
-                    }`}
-                    onClick={() => setActiveId(String(p.id))}
-                    whileHover={{ scale: 1.02 }}
-                    transition={spring}
-                  >
-                    <CollapsedCard project={p} />
-                  </motion.article>
-                )
-              })}
+        <LayoutGroup>
+          {/* ── Mode Mobile: full-width stacked (< lg) ── */}
+          {activeId && isMobile && (
+            <div className="flex flex-col gap-3">
+              <motion.article
+                key={activeId}
+                layoutId={`proj-${activeId}`}
+                className={`${cardBase} cursor-pointer w-full`}
+                style={{ height: 340 }}
+                onClick={() => setActiveId(null)}
+                transition={spring}
+              >
+                {activeProject && <ExpandedCard project={activeProject} />}
+              </motion.article>
+              <div className="grid grid-cols-2 gap-2 auto-rows-[160px]">
+                {others.map((p, i) => {
+                  const lastAlone = others.length % 2 !== 0 && i === others.length - 1
+                  return (
+                    <motion.article
+                      key={p.id}
+                      layoutId={`proj-${p.id}`}
+                      className={`${cardBase} cursor-pointer ${lastAlone ? 'col-span-2' : ''}`}
+                      onClick={() => setActiveId(String(p.id))}
+                      whileHover={{ scale: 1.02 }}
+                      transition={spring}
+                    >
+                      <CollapsedCard project={p} />
+                    </motion.article>
+                  )
+                })}
+              </div>
             </div>
+          )}
 
-            {/* Center: expanded active card */}
-            <motion.article
-              layoutId={`proj-${activeId}`}
-              className={`${cardBase} cursor-pointer flex-none`}
-              style={{ width: '50%' }}
-              onClick={() => setActiveId(null)}
-              transition={spring}
-            >
-              {activeProject && <ExpandedCard project={activeProject} />}
-            </motion.article>
+          {/* ── Mode 2: LEFT or RIGHT expanded (desktop only) ── */}
+          {activeId && !isMobile && expandDir !== 'center' && (
+            <div className="flex gap-3" style={{ height: 460 }}>
+              {expandDir === 'right' && (
+                <OthersMiniGrid others={others} setActiveId={setActiveId} />
+              )}
 
-            {/* Right column: cards in columns >= active column (excluding active) */}
-            <div className="flex-1 flex flex-col gap-2 min-h-0">
-              {rightOthers.map((p, i) => {
-                const heights = columnHeights(rightOthers.length)
-                return (
-                  <motion.article
-                    key={p.id}
-                    layoutId={`proj-${p.id}`}
-                    className={`${cardBase} cursor-pointer ${
-                      heights[i] === 'fixed' ? 'h-[180px] shrink-0' : 'flex-1 min-h-0'
-                    }`}
-                    onClick={() => setActiveId(String(p.id))}
-                    whileHover={{ scale: 1.02 }}
-                    transition={spring}
-                  >
-                    <CollapsedCard project={p} />
-                  </motion.article>
-                )
-              })}
+              <motion.article
+                key={activeId}
+                layoutId={`proj-${activeId}`}
+                className={`${cardBase} cursor-pointer flex-none`}
+                style={{ width: '58%' }}
+                onClick={() => setActiveId(null)}
+                transition={spring}
+              >
+                {activeProject && <ExpandedCard project={activeProject} />}
+              </motion.article>
+
+              {expandDir === 'left' && (
+                <OthersMiniGrid others={others} setActiveId={setActiveId} />
+              )}
             </div>
-          </div>
-        )}
+          )}
+
+          {/* ── Mode 3: CENTER expanded (desktop only) ── */}
+          {activeId && !isMobile && expandDir === 'center' && (
+            <div className="flex gap-3" style={{ height: 460 }}>
+              {/* Left column: cards in columns < active column */}
+              <div className="flex-1 flex flex-col gap-2 min-h-0">
+                {leftOthers.map((p, i) => {
+                  const heights = columnHeights(leftOthers.length)
+                  return (
+                    <motion.article
+                      key={p.id}
+                      layoutId={`proj-${p.id}`}
+                      className={`${cardBase} cursor-pointer ${
+                        heights[i] === 'fixed' ? 'h-[180px] shrink-0' : 'flex-1 min-h-0'
+                      }`}
+                      onClick={() => setActiveId(String(p.id))}
+                      whileHover={{ scale: 1.02 }}
+                      transition={spring}
+                    >
+                      <CollapsedCard project={p} />
+                    </motion.article>
+                  )
+                })}
+              </div>
+
+              {/* Center: expanded active card */}
+              <motion.article
+                key={activeId}
+                layoutId={`proj-${activeId}`}
+                className={`${cardBase} cursor-pointer flex-none`}
+                style={{ width: '50%' }}
+                onClick={() => setActiveId(null)}
+                transition={spring}
+              >
+                {activeProject && <ExpandedCard project={activeProject} />}
+              </motion.article>
+
+              {/* Right column: cards in columns >= active column (excluding active) */}
+              <div className="flex-1 flex flex-col gap-2 min-h-0">
+                {rightOthers.map((p, i) => {
+                  const heights = columnHeights(rightOthers.length)
+                  return (
+                    <motion.article
+                      key={p.id}
+                      layoutId={`proj-${p.id}`}
+                      className={`${cardBase} cursor-pointer ${
+                        heights[i] === 'fixed' ? 'h-[180px] shrink-0' : 'flex-1 min-h-0'
+                      }`}
+                      onClick={() => setActiveId(String(p.id))}
+                      whileHover={{ scale: 1.02 }}
+                      transition={spring}
+                    >
+                      <CollapsedCard project={p} />
+                    </motion.article>
+                  )
+                })}
+              </div>
+            </div>
+          )}
+        </LayoutGroup>
       </div>
     </section>
   )

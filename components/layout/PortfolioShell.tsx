@@ -5,11 +5,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Sidebar } from '@/components/layout/Sidebar'
 import { Hero } from '@/components/sections/Hero'
 import { Work } from '@/components/sections/Work'
+import { Projects } from '@/components/sections/Projects'
 import { Skills } from '@/components/sections/Skills'
 import { Contact } from '@/components/sections/Contact'
 import type { Profile, Experience, Project, Skill } from '@/lib/types'
 
-export type PanelId = 'home' | 'work' | 'skills' | 'contact'
+export type PanelId = 'home' | 'work' | 'projects' | 'skills' | 'contact'
 
 interface PortfolioShellProps {
   profile: Profile
@@ -19,7 +20,7 @@ interface PortfolioShellProps {
 }
 
 const ease = [0.16, 1, 0.3, 1] as const
-const panelOrder: PanelId[] = ['home', 'work', 'skills', 'contact']
+const panelOrder: PanelId[] = ['home', 'work', 'projects', 'skills', 'contact']
 
 export function PortfolioShell({ profile, experience, projects, skills }: PortfolioShellProps) {
   const [activePanel, setActivePanel] = useState<PanelId>('home')
@@ -98,7 +99,19 @@ export function PortfolioShell({ profile, experience, projects, skills }: Portfo
               className="absolute inset-0 overflow-y-auto bg-[#F0EDE8] dark:bg-[#141210]"
               onWheel={handleWheel}
             >
-              <Work experience={experience} projects={projects} />
+              <Work experience={experience} />
+            </motion.div>
+          )}
+          {activePanel === 'projects' && (
+            <motion.div
+              key="projects"
+              initial={{ opacity: 0, scale: 1.03 }}
+              animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, ease } }}
+              exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.22 } }}
+              className="absolute inset-0 overflow-y-auto bg-[#ECEBE6] dark:bg-[#131211]"
+              onWheel={handleWheel}
+            >
+              <Projects projects={projects} />
             </motion.div>
           )}
           {activePanel === 'skills' && (
