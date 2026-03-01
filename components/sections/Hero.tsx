@@ -84,6 +84,7 @@ export function Hero({ profile, setActivePanel }: HeroProps) {
             {/* CTAs */}
             <motion.div variants={item} className="flex flex-wrap gap-3 pt-1">
               <button
+                type="button"
                 onClick={() => setActivePanel('work')}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-600 dark:bg-amber-500 text-white font-medium text-sm shadow-sm hover:bg-amber-700 dark:hover:bg-amber-600 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
               >

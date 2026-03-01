@@ -48,6 +48,7 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
     <nav className="flex flex-col gap-0.5">
       {navLinks.map((link) => (
         <button
+          type="button"
           key={link.id}
           onClick={() => handleNav(link.id)}
           className={cn(
@@ -113,7 +114,7 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
       {/* ── Desktop Sidebar ── */}
       <aside className="fixed top-0 left-0 z-30 h-screen w-[240px] hidden lg:flex flex-col bg-cream-50 dark:bg-dark-surface border-r border-cream-200 dark:border-dark-border px-4 py-6">
         {/* Logo */}
-        <button onClick={() => handleNav('home')} className="flex items-center gap-3 mb-8 group text-left">
+        <button type="button" onClick={() => handleNav('home')} className="flex items-center gap-3 mb-8 group text-left">
           <div className="w-10 h-10 rounded-xl bg-amber-600 dark:bg-amber-500 flex items-center justify-center text-white font-mono font-bold text-sm shadow-sm shrink-0">
             BP
           </div>
@@ -197,7 +198,7 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
             >
               {/* Header */}
               <div className="flex items-center justify-between mb-8">
-                <button onClick={() => handleNav('home')} className="flex items-center gap-3">
+                <button type="button" onClick={() => handleNav('home')} className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-amber-600 dark:bg-amber-500 flex items-center justify-center text-white font-mono font-bold text-sm shadow-sm">
                     BP
                   </div>
@@ -211,6 +212,7 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
                   </div>
                 </button>
                 <button
+                  type="button"
                   onClick={() => setMobileOpen(false)}
                   className="w-8 h-8 rounded-lg flex items-center justify-center text-ink-400 dark:text-dark-muted hover:bg-cream-200/60 dark:hover:bg-dark-surface-2"
                   aria-label="Close menu"

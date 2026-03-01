@@ -71,23 +71,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const personJsonLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Bao Pham',
+    alternateName: 'Pham Hoang Bao',
+    url: 'https://phambao.dev',
+    jobTitle: 'Software Engineer',
+    sameAs: ['https://github.com/baopham', 'https://linkedin.com/in/baopham'],
+  })
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Person',
-              name: 'Bao Pham',
-              alternateName: 'Pham Hoang Bao',
-              url: 'https://phambao.dev',
-              jobTitle: 'Software Engineer',
-              sameAs: ['https://github.com/baopham', 'https://linkedin.com/in/baopham'],
-            }),
-          }}
-        />
+        <script type="application/ld+json">{personJsonLd}</script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${vt323.variable} antialiased`}

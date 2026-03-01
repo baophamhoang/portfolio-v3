@@ -13,7 +13,7 @@ function formatDate(date: string): string {
   const [year, month] = date.split('-')
   const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-  return `${monthNames[parseInt(month) - 1]} ${year}`
+  return `${monthNames[Number.parseInt(month, 10) - 1]} ${year}`
 }
 
 function getDuration(start: string, end?: string): string {
@@ -60,6 +60,7 @@ function ExperienceRow({
 
       {/* Clickable header */}
       <button
+        type="button"
         onClick={() => onToggle(String(exp.id))}
         className="w-full text-left flex items-center gap-4 py-5 group"
       >

@@ -267,9 +267,9 @@ function Gem() {
       </group>
 
       {/* ─── Particles ─── */}
-      {particleParams.map((_, i) => (
+      {particleParams.map((particle, i) => (
         <mesh
-          key={i}
+          key={`particle-${particle.baseAngle}`}
           ref={(el) => {
             particleRefs.current[i] = el
           }}

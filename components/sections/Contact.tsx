@@ -128,10 +128,11 @@ export function Contact({ profile }: ContactProps) {
               className="bg-white/50 dark:bg-[#221E1C] border border-cream-200/80 dark:border-[#3A3228] rounded-2xl p-5 flex flex-col gap-5"
             >
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-medium text-ink-500 dark:text-[#7A6E66] uppercase tracking-wider">
+                <label htmlFor="contact-name" className="text-xs font-medium text-ink-500 dark:text-[#7A6E66] uppercase tracking-wider">
                   Name
                 </label>
                 <input
+                  id="contact-name"
                   type="text"
                   required
                   placeholder="Your name"
@@ -142,10 +143,11 @@ export function Contact({ profile }: ContactProps) {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-medium text-ink-500 dark:text-[#7A6E66] uppercase tracking-wider">
+                <label htmlFor="contact-email" className="text-xs font-medium text-ink-500 dark:text-[#7A6E66] uppercase tracking-wider">
                   Email
                 </label>
                 <input
+                  id="contact-email"
                   type="email"
                   required
                   placeholder="you@example.com"
@@ -156,10 +158,11 @@ export function Contact({ profile }: ContactProps) {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-medium text-ink-500 dark:text-[#7A6E66] uppercase tracking-wider">
+                <label htmlFor="contact-message" className="text-xs font-medium text-ink-500 dark:text-[#7A6E66] uppercase tracking-wider">
                   Message
                 </label>
                 <textarea
+                  id="contact-message"
                   required
                   rows={5}
                   placeholder="Tell me about your project..."

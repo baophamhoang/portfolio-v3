@@ -31,6 +31,7 @@ export function PortfolioShell({ profile, experience, projects, skills }: Portfo
   // Reset accumulator whenever the active panel changes so leftover
   // momentum events from the previous panel don't carry over.
   useEffect(() => {
+    void activePanel
     accDeltaRef.current = 0
   }, [activePanel])
 
