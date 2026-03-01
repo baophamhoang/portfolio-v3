@@ -2,7 +2,39 @@ import { NextResponse } from 'next/server'
 import { initDb, getDb } from '@/lib/db'
 import { seedProfile, seedExperience, seedProjects, seedSkills } from '@/lib/seed-data'
 
-export async function POST() {
+function readSeedApiKeyFromRequest(request: Request): string | null {
+  const apiKeyHeader = request.headers.get('x-api-key')
+  if (apiKeyHeader) return apiKeyHeader
+
+  const authorization = request.headers.get('authorization')
+  if (!authorization) return null
+
+  const bearerPrefix = 'Bearer '
+  if (authorization.startsWith(bearerPrefix)) {
+    return authorization.slice(bearerPrefix.length).trim()
+  }
+
+  return null
+}
+
+export async function POST(request: Request) {
+  const seedApiKey = process.env.SEED_API_KEY
+
+  if (!seedApiKey) {
+    return NextResponse.json(
+      { success: false, error: 'SEED_API_KEY is not configured' },
+      { status: 500 },
+    )
+  }
+
+  const providedKey = readSeedApiKeyFromRequest(request)
+  if (providedKey !== seedApiKey) {
+    return NextResponse.json(
+      { success: false, error: 'Unauthorized' },
+      { status: 401 },
+    )
+  }
+
   try {
     await initDb()
     const db = getDb()

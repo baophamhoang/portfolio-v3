@@ -20,6 +20,28 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Seed API protection
+
+The `POST /api/seed` endpoint is protected by an API key.
+
+1. Add this to your `.env.local`:
+
+```bash
+SEED_API_KEY=your-strong-random-key
+```
+
+2. Call the endpoint with either header:
+
+- `x-api-key: <SEED_API_KEY>`
+- `Authorization: Bearer <SEED_API_KEY>`
+
+Example:
+
+```bash
+curl -X POST http://localhost:3000/api/seed \
+	-H "x-api-key: your-strong-random-key"
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
