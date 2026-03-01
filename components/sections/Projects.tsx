@@ -42,7 +42,7 @@ function columnHeights(n: number): ('fixed' | 'grow')[] {
 function CollapsedCard({ project }: { project: Project }) {
   return (
     <div className="h-full flex flex-col">
-      <div className="h-1 shrink-0" style={{ background: project.color }} />
+      <div className="h-1.5 shrink-0" style={{ background: project.color }} />
       <div className="p-4 flex flex-col gap-1 flex-1 overflow-hidden">
         <div className="flex items-start justify-between gap-2">
           <span className="font-display font-bold text-sm text-ink-900 dark:text-dark-text truncate leading-snug">
@@ -55,8 +55,11 @@ function CollapsedCard({ project }: { project: Project }) {
         <span className="font-mono text-[11px] text-ink-300 dark:text-dark-muted">
           {project.year}
         </span>
+        <p className="text-[12px] text-ink-400 dark:text-dark-text-secondary leading-snug line-clamp-2 mt-1">
+          {project.description}
+        </p>
         <div className="flex flex-wrap gap-1 mt-auto pt-2">
-          {project.tech_stack.slice(0, 2).map((tech) => (
+          {project.tech_stack.slice(0, 3).map((tech) => (
             <span
               key={tech}
               className="px-1.5 py-0.5 text-[10px] font-mono rounded
