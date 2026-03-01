@@ -50,9 +50,9 @@ export function Hero({ profile, setActivePanel }: HeroProps) {
           >
             {/* Status badge */}
             <motion.div variants={item}>
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20 text-green-700 dark:text-green-400 text-xs font-mono">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                Open to new opportunities
+              <span className="inline-flex items-center gap-2 px-3 py-1 font-pixel text-lg text-green-600 dark:text-green-400 border-2 border-green-500/50 dark:border-green-500/30">
+                <span className="w-2 h-2 bg-green-500 animate-pulse" />
+                [ONLINE] Open to new opportunities
               </span>
             </motion.div>
 
@@ -61,7 +61,7 @@ export function Hero({ profile, setActivePanel }: HeroProps) {
               <p className="text-sm font-mono text-ink-400 dark:text-dark-muted mb-1 tracking-widest uppercase">
                 Hello, I&apos;m
               </p>
-              <h1 className="font-display font-bold text-ink-900 dark:text-dark-text leading-[1.05] tracking-tight text-7xl sm:text-8xl lg:text-8xl glow-amber">
+              <h1 className="font-pixel text-ink-900 dark:text-dark-text leading-[1.05] text-7xl sm:text-8xl lg:text-8xl glow-amber">
                 {profile.name}
               </h1>
             </motion.div>
@@ -86,7 +86,7 @@ export function Hero({ profile, setActivePanel }: HeroProps) {
               <button
                 type="button"
                 onClick={() => setActivePanel('work')}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-600 dark:bg-amber-500 text-white font-medium text-sm shadow-sm hover:bg-amber-700 dark:hover:bg-amber-600 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
+                className="btn-retro"
               >
                 View my work
               </button>
@@ -94,7 +94,7 @@ export function Hero({ profile, setActivePanel }: HeroProps) {
                 href={profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-cream-300 dark:border-dark-border text-ink-600 dark:text-dark-text-secondary font-medium text-sm hover:bg-cream-100 dark:hover:bg-dark-surface transition-all duration-200 hover:-translate-y-0.5"
+                className="btn-retro-ghost"
               >
                 <Github size={15} />
                 GitHub
@@ -103,7 +103,7 @@ export function Hero({ profile, setActivePanel }: HeroProps) {
                 href={profile.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-cream-300 dark:border-dark-border text-ink-600 dark:text-dark-text-secondary font-medium text-sm hover:bg-cream-100 dark:hover:bg-dark-surface transition-all duration-200 hover:-translate-y-0.5"
+                className="btn-retro-ghost"
               >
                 <Linkedin size={15} />
                 LinkedIn

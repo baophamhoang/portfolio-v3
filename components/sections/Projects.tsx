@@ -71,7 +71,7 @@ function CollapsedCard({ project }: { project: Project }) {
           {project.tech_stack.slice(0, 3).map((tech) => (
             <span
               key={tech}
-              className="px-1.5 py-0.5 text-[10px] font-mono rounded
+              className="px-1.5 py-0.5 text-[10px] font-mono
                 bg-cream-100/80 dark:bg-dark-surface-2 text-ink-400 dark:text-dark-text-secondary"
             >
               {tech}
@@ -113,7 +113,7 @@ function ExpandedCard({ project }: { project: Project }) {
           {project.tech_stack.map((tech) => (
             <span
               key={tech}
-              className="px-2 py-0.5 text-[11px] font-mono rounded-md
+              className="px-2 py-0.5 text-[11px] font-mono
                 bg-cream-100/80 dark:bg-dark-surface-2 text-ink-500 dark:text-dark-text-secondary
                 border border-cream-200/60 dark:border-dark-border"
             >
@@ -180,12 +180,11 @@ function OthersMiniGrid({
         <motion.article
           key={p.id}
           layoutId={`proj-${p.id}`}
-          className={`rounded-2xl overflow-hidden cursor-pointer
+          className={`overflow-hidden cursor-pointer retro-border retro-hover
             bg-cream-50 dark:bg-dark-surface-2
-            border border-cream-200/60 dark:border-dark-border
             ${lastAlone && i === others.length - 1 ? 'col-span-2' : ''}`}
           onClick={() => setActiveId(String(p.id))}
-          whileHover={{ scale: 1.02 }}
+
           transition={spring}
         >
           <CollapsedCard project={p} />
@@ -213,9 +212,9 @@ interface ProjectsProps {
 }
 
 const cardBase =
-  'rounded-2xl overflow-hidden bg-cream-50 dark:bg-dark-surface-2 border border-cream-200/60 dark:border-dark-border';
+  'overflow-hidden bg-cream-50 dark:bg-dark-surface-2 retro-border retro-hover';
 const expandedCardBase =
-  'rounded-2xl overflow-hidden bg-cream-50 dark:bg-dark-surface-2 retro-border';
+  'overflow-hidden bg-cream-50 dark:bg-dark-surface-2 retro-border';
 
 export function Projects({ projects: rawProjects }: ProjectsProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -270,7 +269,7 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
           <span className="font-pixel text-2xl text-amber-600 dark:text-amber-500 leading-none">
             03.
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink-900 dark:text-dark-text">
+          <h2 className="font-pixel text-4xl sm:text-5xl text-ink-900 dark:text-dark-text">
             Projects
           </h2>
           <div className="flex-1 h-px bg-cream-200 dark:bg-dark-border ml-4 max-w-xs" />
@@ -293,7 +292,6 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
                   default: { duration: 0.35, delay: i * 0.05 },
                 }}
                 onClick={() => setActiveId(String(p.id))}
-                whileHover={{ scale: 1.015 }}
               >
                 <CollapsedCard project={p} />
               </motion.article>
@@ -325,7 +323,7 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
                       layoutId={`proj-${p.id}`}
                       className={`${cardBase} cursor-pointer ${lastAlone ? 'col-span-2' : ''}`}
                       onClick={() => setActiveId(String(p.id))}
-                      whileHover={{ scale: 1.02 }}
+            
                       transition={spring}
                     >
                       <CollapsedCard project={p} />
@@ -377,7 +375,7 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
                           : 'flex-1 min-h-0'
                       }`}
                       onClick={() => setActiveId(String(p.id))}
-                      whileHover={{ scale: 1.02 }}
+            
                       transition={spring}
                     >
                       <CollapsedCard project={p} />
@@ -412,7 +410,7 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
                           : 'flex-1 min-h-0'
                       }`}
                       onClick={() => setActiveId(String(p.id))}
-                      whileHover={{ scale: 1.02 }}
+            
                       transition={spring}
                     >
                       <CollapsedCard project={p} />

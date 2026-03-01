@@ -37,7 +37,7 @@ export function Contact({ profile }: ContactProps) {
   }
 
   const inputClass =
-    'w-full px-4 py-3 rounded-xl bg-white/70 dark:bg-[#221E1C] border border-cream-200 dark:border-[#3A3228] text-ink-900 dark:text-[#F0EDE8] placeholder:text-ink-400 dark:placeholder:text-[#7A6E66] focus:outline-none focus:border-amber-600 dark:focus:border-[#D97706] focus:ring-2 focus:ring-amber-600/20 dark:focus:ring-[#D97706]/20 transition-all duration-200 text-sm'
+    'w-full px-3 py-2 bg-transparent border-b-2 border-ink-300 dark:border-dark-border text-ink-900 dark:text-[#F0EDE8] font-pixel text-lg placeholder:text-ink-300 dark:placeholder:text-dark-muted focus:outline-none focus:border-amber-600 dark:focus:border-amber-500 transition-colors duration-100'
 
   return (
     <section id="contact" className="relative min-h-full py-10 px-6">
@@ -58,7 +58,7 @@ export function Contact({ profile }: ContactProps) {
           className="flex items-center gap-3 mb-8"
         >
           <span className="font-pixel text-2xl text-amber-600 dark:text-amber-500 leading-none">05.</span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink-900 dark:text-dark-text">
+          <h2 className="font-pixel text-4xl sm:text-5xl text-ink-900 dark:text-dark-text">
             Get in touch
           </h2>
           <div className="flex-1 h-px bg-cream-200 dark:bg-[#3A3228] ml-4 max-w-xs hidden sm:block" />
@@ -73,7 +73,7 @@ export function Contact({ profile }: ContactProps) {
             className="flex flex-col gap-6"
           >
             <div>
-              <h3 className="font-display text-4xl sm:text-5xl font-bold text-ink-900 dark:text-dark-text mb-4 leading-tight">
+              <h3 className="font-pixel text-4xl sm:text-5xl text-ink-900 dark:text-dark-text mb-4 leading-tight">
                 Let&apos;s build something.
               </h3>
               <p className="text-base text-ink-600 dark:text-dark-text-secondary leading-relaxed">
@@ -96,7 +96,7 @@ export function Contact({ profile }: ContactProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="w-10 h-10 rounded-xl flex items-center justify-center bg-white/70 dark:bg-[#221E1C] border border-cream-200/80 dark:border-[#3A3228] text-ink-500 dark:text-[#B0A498] hover:border-amber-500/40 dark:hover:border-amber-600/30 hover:text-ink-900 dark:hover:text-[#F7F3EC] transition-all duration-200"
+                className="w-10 h-10 flex items-center justify-center bg-white/70 dark:bg-[#221E1C] border-2 border-ink-300 dark:border-dark-border text-ink-500 dark:text-[#B0A498] hover:border-amber-500 dark:hover:border-amber-600 hover:text-ink-900 dark:hover:text-[#F7F3EC] transition-colors duration-100"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -107,7 +107,7 @@ export function Contact({ profile }: ContactProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="w-10 h-10 rounded-xl flex items-center justify-center bg-white/70 dark:bg-[#221E1C] border border-cream-200/80 dark:border-[#3A3228] text-ink-500 dark:text-[#B0A498] hover:border-amber-500/40 dark:hover:border-amber-600/30 hover:text-ink-900 dark:hover:text-[#F7F3EC] transition-all duration-200"
+                className="w-10 h-10 flex items-center justify-center bg-white/70 dark:bg-[#221E1C] border-2 border-ink-300 dark:border-dark-border text-ink-500 dark:text-[#B0A498] hover:border-amber-500 dark:hover:border-amber-600 hover:text-ink-900 dark:hover:text-[#F7F3EC] transition-colors duration-100"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -118,7 +118,7 @@ export function Contact({ profile }: ContactProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter"
-                className="w-10 h-10 rounded-xl flex items-center justify-center bg-white/70 dark:bg-[#221E1C] border border-cream-200/80 dark:border-[#3A3228] text-ink-500 dark:text-[#B0A498] hover:border-amber-500/40 dark:hover:border-amber-600/30 hover:text-ink-900 dark:hover:text-[#F7F3EC] transition-all duration-200"
+                className="w-10 h-10 flex items-center justify-center bg-white/70 dark:bg-[#221E1C] border-2 border-ink-300 dark:border-dark-border text-ink-500 dark:text-[#B0A498] hover:border-amber-500 dark:hover:border-amber-600 hover:text-ink-900 dark:hover:text-[#F7F3EC] transition-colors duration-100"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -135,7 +135,7 @@ export function Contact({ profile }: ContactProps) {
           >
             <form
               onSubmit={handleSubmit}
-              className="bg-white/50 dark:bg-[#221E1C] retro-border rounded-2xl p-5 flex flex-col gap-5"
+              className="bg-white/50 dark:bg-[#221E1C] retro-border p-5 flex flex-col gap-5"
             >
               <div className="flex flex-col gap-1.5 field-pixel-cursor">
                 <label htmlFor="contact-name" className="text-xs font-medium text-ink-500 dark:text-[#7A6E66] uppercase tracking-wider">
@@ -185,8 +185,7 @@ export function Contact({ profile }: ContactProps) {
               <motion.button
                 type="submit"
                 disabled={status === 'sending' || status === 'sent'}
-                className="relative flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-xl font-medium text-sm text-white bg-amber-600 hover:bg-amber-500 disabled:opacity-70 transition-all duration-200 shadow-sm hover:shadow-md overflow-hidden"
-                whileHover={status === 'idle' ? { scale: 1.01 } : {}}
+                className="btn-retro w-full justify-center disabled:opacity-70"
                 whileTap={status === 'idle' ? { scale: 0.99 } : {}}
               >
                 {status === 'idle' && (
@@ -197,7 +196,7 @@ export function Contact({ profile }: ContactProps) {
                 )}
                 {status === 'sending' && (
                   <>
-                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white animate-spin" />
                     Sending...
                   </>
                 )}

@@ -143,7 +143,7 @@ export function Work({ experience }: WorkProps) {
           className="flex items-center gap-3 mb-8"
         >
           <span className="font-pixel text-2xl text-amber-600 dark:text-amber-500 leading-none">02.</span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink-900 dark:text-dark-text">
+          <h2 className="font-pixel text-4xl sm:text-5xl text-ink-900 dark:text-dark-text">
             Work
           </h2>
           <div className="flex-1 h-px bg-cream-200 dark:bg-dark-border ml-4 max-w-xs" />

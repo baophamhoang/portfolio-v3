@@ -217,11 +217,17 @@ body {
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 0, 0, 0.015) 2px,
-    rgba(0, 0, 0, 0.015) 4px
+    rgba(0, 0, 0, 0.06) 2px,
+    rgba(0, 0, 0, 0.06) 4px
   );
   pointer-events: none;
   z-index: 10;
+}
+.dark .scanlines::after {
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(0, 0, 0, 0.12) 2px, rgba(0, 0, 0, 0.12) 4px
+  );
 }
 
 /* Gradient text */
@@ -365,6 +371,82 @@ body {
 }
 .dark .field-pixel-cursor:focus-within label::after {
   color: #F59E0B;
+}
+
+/* Retro button */
+.btn-retro {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  font-family: var(--font-pixel);
+  font-size: 1.125rem;
+  line-height: 1;
+  background: #D97706;
+  color: #fff;
+  border: 2px solid #1C1815;
+  box-shadow: 4px 4px 0px #1C1815;
+  cursor: pointer;
+  transition: box-shadow 0.05s step-end, transform 0.05s step-end;
+}
+.btn-retro:hover {
+  background: #F59E0B;
+}
+.btn-retro:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px #1C1815;
+}
+.dark .btn-retro {
+  border-color: #F0EDE8;
+  box-shadow: 4px 4px 0px #F0EDE8;
+  color: #1C1815;
+}
+.dark .btn-retro:active {
+  box-shadow: 0px 0px 0px #F0EDE8;
+}
+/* Ghost variant for secondary buttons */
+.btn-retro-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  font-family: var(--font-pixel);
+  font-size: 1.125rem;
+  line-height: 1;
+  background: transparent;
+  color: #1C1815;
+  border: 2px solid #1C1815;
+  box-shadow: 3px 3px 0px #C4B5A0;
+  cursor: pointer;
+  transition: box-shadow 0.05s step-end, transform 0.05s step-end;
+}
+.btn-retro-ghost:hover {
+  background: rgba(0,0,0,0.04);
+}
+.btn-retro-ghost:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0px #C4B5A0;
+}
+.dark .btn-retro-ghost {
+  color: #F0EDE8;
+  border-color: #F0EDE8;
+  box-shadow: 3px 3px 0px #3D3530;
+}
+.dark .btn-retro-ghost:active {
+  box-shadow: 0px 0px 0px #3D3530;
+}
+
+/* Retro card hover */
+.retro-hover {
+  transition: border-color 0.05s step-end, box-shadow 0.05s step-end;
+}
+.retro-hover:hover {
+  border-color: #D97706 !important;
+  box-shadow: 4px 4px 0px #D97706 !important;
+}
+.dark .retro-hover:hover {
+  border-color: #F59E0B !important;
+  box-shadow: 4px 4px 0px #F59E0B !important;
 }
 
 /* Section sub-header label */

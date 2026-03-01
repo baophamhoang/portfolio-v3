@@ -52,7 +52,7 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
           key={link.id}
           onClick={() => handleNav(link.id)}
           className={cn(
-            'relative flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors duration-200 text-left',
+            'relative flex items-center gap-3 px-3 py-2 text-sm transition-colors duration-200 text-left',
             activePanel === link.id
               ? 'text-ink-900 dark:text-dark-text font-medium'
               : 'text-ink-400 dark:text-dark-muted hover:text-ink-700 dark:hover:text-dark-text-secondary'
@@ -61,7 +61,7 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
           {activePanel === link.id && (
             <motion.div
               layoutId={`nav-indicator-${layoutIdSuffix}`}
-              className="absolute inset-0 rounded-lg bg-cream-200/80 dark:bg-dark-surface"
+              className="absolute inset-0 rounded-none border-l-2 border-amber-600 bg-cream-200/80 dark:bg-dark-surface"
               transition={{ type: 'spring', stiffness: 400, damping: 35 }}
             />
           )}
@@ -78,7 +78,7 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="GitHub"
-        className="w-8 h-8 rounded-lg flex items-center justify-center text-ink-400 dark:text-dark-muted hover:text-ink-700 dark:hover:text-dark-text hover:bg-cream-200/60 dark:hover:bg-dark-surface transition-all duration-200"
+        className="w-8 h-8 flex items-center justify-center text-ink-400 dark:text-dark-muted hover:text-ink-700 dark:hover:text-dark-text hover:bg-cream-200/60 dark:hover:bg-dark-surface transition-all duration-200"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
@@ -89,7 +89,7 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="LinkedIn"
-        className="w-8 h-8 rounded-lg flex items-center justify-center text-ink-400 dark:text-dark-muted hover:text-ink-700 dark:hover:text-dark-text hover:bg-cream-200/60 dark:hover:bg-dark-surface transition-all duration-200"
+        className="w-8 h-8 flex items-center justify-center text-ink-400 dark:text-dark-muted hover:text-ink-700 dark:hover:text-dark-text hover:bg-cream-200/60 dark:hover:bg-dark-surface transition-all duration-200"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
@@ -100,7 +100,7 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Twitter"
-        className="w-8 h-8 rounded-lg flex items-center justify-center text-ink-400 dark:text-dark-muted hover:text-ink-700 dark:hover:text-dark-text hover:bg-cream-200/60 dark:hover:bg-dark-surface transition-all duration-200"
+        className="w-8 h-8 flex items-center justify-center text-ink-400 dark:text-dark-muted hover:text-ink-700 dark:hover:text-dark-text hover:bg-cream-200/60 dark:hover:bg-dark-surface transition-all duration-200"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
@@ -115,7 +115,7 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
       <aside className="fixed top-0 left-0 z-30 h-screen w-[240px] hidden lg:flex flex-col bg-cream-50 dark:bg-dark-surface border-r border-cream-200 dark:border-dark-border px-4 py-6">
         {/* Logo */}
         <button type="button" onClick={() => handleNav('home')} className="flex items-center gap-3 mb-8 group text-left">
-          <div className="w-10 h-10 rounded-xl bg-amber-600 dark:bg-amber-500 flex items-center justify-center text-white font-mono font-bold text-sm shadow-sm shrink-0">
+          <div className="w-10 h-10 bg-amber-600 dark:bg-amber-500 flex items-center justify-center text-white font-mono font-bold text-sm shrink-0 border-2 border-amber-800 dark:border-amber-400">
             BP
           </div>
           <div>
@@ -141,7 +141,7 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
           {mounted && (
             <motion.button
               onClick={toggleTheme}
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-ink-400 dark:text-dark-muted hover:text-ink-700 dark:hover:text-dark-text hover:bg-cream-200/60 dark:hover:bg-dark-surface-2 transition-all duration-200"
+              className="w-8 h-8 flex items-center justify-center text-ink-400 dark:text-dark-muted hover:text-ink-700 dark:hover:text-dark-text hover:bg-cream-200/60 dark:hover:bg-dark-surface-2 transition-all duration-200"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               aria-label="Toggle theme"
@@ -168,7 +168,7 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.5 }}
         onClick={() => setMobileOpen(true)}
-        className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-2xl bg-amber-600 dark:bg-amber-500 text-white shadow-lg lg:hidden flex items-center justify-center hover:bg-amber-700 dark:hover:bg-amber-600 transition-colors"
+        className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-amber-600 dark:bg-amber-500 text-white shadow-lg lg:hidden flex items-center justify-center hover:bg-amber-700 dark:hover:bg-amber-600 transition-colors border-2 border-amber-800 dark:border-amber-300"
         aria-label="Open menu"
       >
         <Menu size={20} />
@@ -199,7 +199,7 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
               {/* Header */}
               <div className="flex items-center justify-between mb-8">
                 <button type="button" onClick={() => handleNav('home')} className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-amber-600 dark:bg-amber-500 flex items-center justify-center text-white font-mono font-bold text-sm shadow-sm">
+                  <div className="w-10 h-10 bg-amber-600 dark:bg-amber-500 flex items-center justify-center text-white font-mono font-bold text-sm border-2 border-amber-800 dark:border-amber-400">
                     BP
                   </div>
                   <div>
@@ -214,7 +214,7 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
                 <button
                   type="button"
                   onClick={() => setMobileOpen(false)}
-                  className="w-8 h-8 rounded-lg flex items-center justify-center text-ink-400 dark:text-dark-muted hover:bg-cream-200/60 dark:hover:bg-dark-surface-2"
+                  className="w-8 h-8 flex items-center justify-center text-ink-400 dark:text-dark-muted hover:bg-cream-200/60 dark:hover:bg-dark-surface-2"
                   aria-label="Close menu"
                 >
                   <X size={18} />
@@ -234,7 +234,7 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
                 {mounted && (
                   <motion.button
                     onClick={toggleTheme}
-                    className="w-8 h-8 rounded-lg flex items-center justify-center text-ink-400 dark:text-dark-muted hover:text-ink-700 dark:hover:text-dark-text hover:bg-cream-200/60 dark:hover:bg-dark-surface-2 transition-all duration-200"
+                    className="w-8 h-8 flex items-center justify-center text-ink-400 dark:text-dark-muted hover:text-ink-700 dark:hover:text-dark-text hover:bg-cream-200/60 dark:hover:bg-dark-surface-2 transition-all duration-200"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     aria-label="Toggle theme"

@@ -38,7 +38,7 @@ export function Skills({ skills, profile }: SkillsProps) {
           className="flex items-center gap-3 mb-8"
         >
           <span className="font-pixel text-2xl text-amber-600 dark:text-amber-500 leading-none">04.</span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink-900 dark:text-dark-text">
+          <h2 className="font-pixel text-4xl sm:text-5xl text-ink-900 dark:text-dark-text">
             Skills
           </h2>
           <div className="flex-1 h-px bg-amber-200/60 dark:bg-dark-border ml-4 max-w-xs" />
