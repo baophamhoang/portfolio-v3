@@ -121,6 +121,19 @@
   50% { transform: translateY(-6px); }
 }
 
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-8px) rotate(-1deg); }
+  20% { transform: translateX(8px) rotate(1deg); }
+  30% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  50% { transform: translateX(-4px) rotate(-0.5deg); }
+  60% { transform: translateX(4px) rotate(0.5deg); }
+  70% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+  90% { transform: translateX(-1px); }
+}
+
 @keyframes pulse-ring {
   0% { transform: scale(0.8); opacity: 1; }
   100% { transform: scale(2.4); opacity: 0; }
@@ -295,6 +308,9 @@ body {
 .animate-marquee {
   animation: marquee 20s linear infinite;
 }
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
 
 /* Focus ring */
 :focus-visible {
@@ -338,6 +354,17 @@ body {
 /* Sidebar body lock */
 .sidebar-open {
   overflow: hidden;
+}
+
+/* Pixel cursor on focused form fields — shows blinking █ after label text */
+.field-pixel-cursor:focus-within label::after {
+  content: ' █';
+  font-family: var(--font-pixel);
+  animation: blink-cursor 1s step-end infinite;
+  color: #D97706;
+}
+.dark .field-pixel-cursor:focus-within label::after {
+  color: #F59E0B;
 }
 
 /* Section sub-header label */

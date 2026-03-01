@@ -12,6 +12,12 @@ import type { Profile, Experience, Project, Skill } from '@/lib/types'
 
 export type PanelId = 'home' | 'work' | 'projects' | 'skills' | 'contact'
 
+const KONAMI = [
+  'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+  'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
+  'b', 'a',
+] as const
+
 interface PortfolioShellProps {
   profile: Profile
   experience: Experience[]
@@ -31,6 +37,9 @@ export function PortfolioShell({ profile, experience, projects, skills }: Portfo
   const switchLockedRef = useRef(false)
   const accDeltaRef = useRef(0)
   const lastWheelRef = useRef(0)
+  const [konamiActive, setKonamiActive] = useState(false)
+  const konamiUsedRef = useRef(false)
+  const [shaking, setShaking] = useState(false)
 
   // On activePanel change — update URL
   useEffect(() => {
@@ -57,6 +66,30 @@ export function PortfolioShell({ profile, experience, projects, skills }: Portfo
     void activePanel
     accDeltaRef.current = 0
   }, [activePanel])
+
+  // Konami code easter egg — one-shot per page load
+  useEffect(() => {
+    let idx = 0
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === KONAMI[idx]) {
+        idx++
+        if (idx === KONAMI.length) {
+          if (!konamiUsedRef.current) {
+            konamiUsedRef.current = true
+            setShaking(true)
+            setKonamiActive(true)
+            setTimeout(() => setShaking(false), 500)
+            setTimeout(() => setKonamiActive(false), 3000)
+          }
+          idx = 0
+        }
+      } else {
+        idx = 0
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [])
 
   const handleWheel = useCallback(
     (e: React.WheelEvent<HTMLDivElement>) => {
@@ -100,7 +133,7 @@ export function PortfolioShell({ profile, experience, projects, skills }: Portfo
   return (
     <div className="h-[100dvh] overflow-hidden flex">
       <Sidebar activePanel={activePanel} setActivePanel={setActivePanel} />
-      <main className="flex-1 lg:ml-[240px] relative overflow-hidden">
+      <main className={`flex-1 lg:ml-[240px] relative overflow-hidden${shaking ? ' animate-shake' : ''}`}>
         <AnimatePresence mode="wait">
           {activePanel === 'home' && (
             <motion.div
@@ -108,7 +141,7 @@ export function PortfolioShell({ profile, experience, projects, skills }: Portfo
               initial={{ opacity: 0, scale: 1.03 }}
               animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, ease } }}
               exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.22 } }}
-              className="absolute inset-0 overflow-y-auto bg-[#F7F3EC] dark:bg-[#0E0D0C]"
+              className="absolute inset-0 overflow-y-auto bg-[#F7F3EC] dark:bg-[#0E0D0C] scanlines"
               onWheel={handleWheel}
             >
               <Hero profile={profile} setActivePanel={setActivePanel} />
@@ -120,7 +153,7 @@ export function PortfolioShell({ profile, experience, projects, skills }: Portfo
               initial={{ opacity: 0, scale: 1.03 }}
               animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, ease } }}
               exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.22 } }}
-              className="absolute inset-0 overflow-y-auto bg-[#F0EDE8] dark:bg-[#141210]"
+              className="absolute inset-0 overflow-y-auto bg-[#F0EDE8] dark:bg-[#141210] scanlines"
               onWheel={handleWheel}
             >
               <Work experience={experience} />
@@ -132,7 +165,7 @@ export function PortfolioShell({ profile, experience, projects, skills }: Portfo
               initial={{ opacity: 0, scale: 1.03 }}
               animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, ease } }}
               exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.22 } }}
-              className="absolute inset-0 overflow-y-auto bg-[#ECEBE6] dark:bg-[#131211]"
+              className="absolute inset-0 overflow-y-auto bg-[#ECEBE6] dark:bg-[#131211] scanlines"
               onWheel={handleWheel}
             >
               <Projects projects={projects} />
@@ -144,7 +177,7 @@ export function PortfolioShell({ profile, experience, projects, skills }: Portfo
               initial={{ opacity: 0, scale: 1.03 }}
               animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, ease } }}
               exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.22 } }}
-              className="absolute inset-0 overflow-y-auto bg-[#FFFBEB] dark:bg-[#110F0E]"
+              className="absolute inset-0 overflow-y-auto bg-[#FFFBEB] dark:bg-[#110F0E] scanlines"
               onWheel={handleWheel}
             >
               <Skills skills={skills} profile={profile} />
@@ -156,10 +189,27 @@ export function PortfolioShell({ profile, experience, projects, skills }: Portfo
               initial={{ opacity: 0, scale: 1.03 }}
               animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, ease } }}
               exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.22 } }}
-              className="absolute inset-0 overflow-y-auto bg-[#EDE8DF] dark:bg-[#1A1917]"
+              className="absolute inset-0 overflow-y-auto bg-[#EDE8DF] dark:bg-[#1A1917] scanlines"
               onWheel={handleWheel}
             >
               <Contact profile={profile} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Konami code toast */}
+        <AnimatePresence>
+          {konamiActive && (
+            <motion.div
+              initial={{ opacity: 0, y: 40, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 40, scale: 0.9 }}
+              transition={{ duration: 0.25, ease }}
+              className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[200] px-6 py-3 bg-[#1A1917] border-2 border-amber-500 shadow-[4px_4px_0px_#D97706] pointer-events-none"
+            >
+              <span className="font-pixel text-2xl text-amber-400 whitespace-nowrap">
+                &gt; CHEAT CODE ACTIVATED: +9999 XP
+              </span>
             </motion.div>
           )}
         </AnimatePresence>

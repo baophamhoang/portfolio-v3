@@ -59,7 +59,7 @@ function CollapsedCard({ project }: { project: Project }) {
             />
           )}
         </div>
-        <span className="font-mono text-[11px] text-ink-500 dark:text-dark-muted flex items-center">
+        <span className="font-pixel text-sm text-ink-500 dark:text-dark-muted flex items-center">
           {project.year}
           <Dot />
           {project.type === 'company' ? project.company_name : 'Personal'}
@@ -90,7 +90,7 @@ function ExpandedCard({ project }: { project: Project }) {
     <div className="h-full flex flex-col">
       <div className="h-1 shrink-0" style={{ background: project.color }} />
       <div className="p-6 flex flex-col gap-3 flex-1 overflow-y-auto min-h-0">
-        <span className="font-mono text-[14px] text-ink-500 dark:text-dark-muted flex items-center">
+        <span className="font-pixel text-lg text-ink-500 dark:text-dark-muted flex items-center">
           {project.year}
           <Dot/>
           {project.type === 'company' ? project.company_name : 'Personal'}
@@ -214,6 +214,8 @@ interface ProjectsProps {
 
 const cardBase =
   'rounded-2xl overflow-hidden bg-cream-50 dark:bg-dark-surface-2 border border-cream-200/60 dark:border-dark-border';
+const expandedCardBase =
+  'rounded-2xl overflow-hidden bg-cream-50 dark:bg-dark-surface-2 retro-border';
 
 export function Projects({ projects: rawProjects }: ProjectsProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -253,7 +255,7 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
   return (
     <section id="projects" className="relative min-h-full py-10 px-6">
       {/* Decorative watermark */}
-      <div className="absolute top-4 right-6 font-display font-black text-[8rem] leading-none text-ink-900/[0.04] dark:text-white/[0.03] select-none pointer-events-none">
+      <div className="absolute top-4 right-6 font-pixel text-[8rem] leading-none text-ink-900/[0.05] dark:text-white/[0.04] select-none pointer-events-none">
         03
       </div>
 
@@ -265,7 +267,7 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
           transition={{ duration: 0.5, ease }}
           className="flex items-center gap-3 mb-8"
         >
-          <span className="font-mono text-sm text-amber-600 dark:text-amber-500">
+          <span className="font-pixel text-2xl text-amber-600 dark:text-amber-500 leading-none">
             03.
           </span>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink-900 dark:text-dark-text">
@@ -306,7 +308,7 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
               <motion.article
                 key={activeId}
                 layoutId={`proj-${activeId}`}
-                className={`${cardBase} cursor-pointer w-full`}
+                className={`${expandedCardBase} cursor-pointer w-full`}
                 style={{ height: 340 }}
                 onClick={() => setActiveId(null)}
                 transition={spring}
@@ -344,7 +346,7 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
               <motion.article
                 key={activeId}
                 layoutId={`proj-${activeId}`}
-                className={`${cardBase} cursor-pointer flex-none`}
+                className={`${expandedCardBase} cursor-pointer flex-none`}
                 style={{ width: '58%' }}
                 onClick={() => setActiveId(null)}
                 transition={spring}
@@ -388,7 +390,7 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
               <motion.article
                 key={activeId}
                 layoutId={`proj-${activeId}`}
-                className={`${cardBase} cursor-pointer flex-none`}
+                className={`${expandedCardBase} cursor-pointer flex-none`}
                 style={{ width: '50%' }}
                 onClick={() => setActiveId(null)}
                 transition={spring}

@@ -61,7 +61,7 @@ export function Hero({ profile, setActivePanel }: HeroProps) {
               <p className="text-sm font-mono text-ink-400 dark:text-dark-muted mb-1 tracking-widest uppercase">
                 Hello, I&apos;m
               </p>
-              <h1 className="font-display font-bold text-ink-900 dark:text-dark-text leading-[1.05] tracking-tight text-7xl sm:text-8xl lg:text-8xl">
+              <h1 className="font-display font-bold text-ink-900 dark:text-dark-text leading-[1.05] tracking-tight text-7xl sm:text-8xl lg:text-8xl glow-amber">
                 {profile.name}
               </h1>
             </motion.div>

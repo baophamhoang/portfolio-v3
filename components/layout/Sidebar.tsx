@@ -65,7 +65,7 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
               transition={{ type: 'spring', stiffness: 400, damping: 35 }}
             />
           )}
-          <span className="relative z-10">{link.label}</span>
+          <span className="relative z-10 font-pixel text-lg leading-none">{link.label}</span>
         </button>
       ))}
     </nav>

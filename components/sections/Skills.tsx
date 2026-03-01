@@ -25,7 +25,7 @@ export function Skills({ skills, profile }: SkillsProps) {
   return (
     <section id="skills" className="relative min-h-full py-10 px-6">
       {/* Decorative watermark */}
-      <div className="absolute top-4 right-6 font-display font-black text-[8rem] leading-none text-ink-900/[0.04] dark:text-white/[0.03] select-none pointer-events-none">
+      <div className="absolute top-4 right-6 font-pixel text-[8rem] leading-none text-ink-900/[0.05] dark:text-white/[0.04] select-none pointer-events-none">
         04
       </div>
 
@@ -37,7 +37,7 @@ export function Skills({ skills, profile }: SkillsProps) {
           transition={{ duration: 0.5, ease }}
           className="flex items-center gap-3 mb-8"
         >
-          <span className="font-mono text-sm text-amber-600 dark:text-amber-500">04.</span>
+          <span className="font-pixel text-2xl text-amber-600 dark:text-amber-500 leading-none">04.</span>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink-900 dark:text-dark-text">
             Skills
           </h2>
@@ -66,7 +66,7 @@ export function Skills({ skills, profile }: SkillsProps) {
                 transition={{ duration: 0.45, delay: 0.12 + i * 0.07, ease }}
                 className="flex items-baseline gap-8 py-5"
               >
-                <span className="w-28 shrink-0 text-xs font-bold uppercase tracking-widest text-amber-600 dark:text-amber-500">
+                <span className="w-28 shrink-0 font-pixel text-base text-amber-600 dark:text-amber-500">
                   {category}
                 </span>
                 <span className="text-sm text-ink-600 dark:text-dark-text-secondary leading-relaxed">

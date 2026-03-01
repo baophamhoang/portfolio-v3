@@ -45,7 +45,7 @@ export function Contact({ profile }: ContactProps) {
       <div className="absolute top-0 left-0 w-80 h-80 bg-amber-500/5 dark:bg-amber-900/10 blur-3xl pointer-events-none" />
 
       {/* Decorative watermark */}
-      <div className="absolute top-4 right-6 font-display font-black text-[8rem] leading-none text-ink-900/[0.04] dark:text-white/[0.03] select-none pointer-events-none">
+      <div className="absolute top-4 right-6 font-pixel text-[8rem] leading-none text-ink-900/[0.05] dark:text-white/[0.04] select-none pointer-events-none">
         05
       </div>
 
@@ -57,7 +57,7 @@ export function Contact({ profile }: ContactProps) {
           transition={{ duration: 0.5, ease }}
           className="flex items-center gap-3 mb-8"
         >
-          <span className="font-mono text-sm text-amber-600 dark:text-amber-500">05.</span>
+          <span className="font-pixel text-2xl text-amber-600 dark:text-amber-500 leading-none">05.</span>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink-900 dark:text-dark-text">
             Get in touch
           </h2>
@@ -135,9 +135,9 @@ export function Contact({ profile }: ContactProps) {
           >
             <form
               onSubmit={handleSubmit}
-              className="bg-white/50 dark:bg-[#221E1C] border border-cream-200/80 dark:border-[#3A3228] rounded-2xl p-5 flex flex-col gap-5"
+              className="bg-white/50 dark:bg-[#221E1C] retro-border rounded-2xl p-5 flex flex-col gap-5"
             >
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1.5 field-pixel-cursor">
                 <label htmlFor="contact-name" className="text-xs font-medium text-ink-500 dark:text-[#7A6E66] uppercase tracking-wider">
                   Name
                 </label>
@@ -152,7 +152,7 @@ export function Contact({ profile }: ContactProps) {
                 />
               </div>
 
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1.5 field-pixel-cursor">
                 <label htmlFor="contact-email" className="text-xs font-medium text-ink-500 dark:text-[#7A6E66] uppercase tracking-wider">
                   Email
                 </label>
@@ -167,7 +167,7 @@ export function Contact({ profile }: ContactProps) {
                 />
               </div>
 
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1.5 field-pixel-cursor">
                 <label htmlFor="contact-message" className="text-xs font-medium text-ink-500 dark:text-[#7A6E66] uppercase tracking-wider">
                   Message
                 </label>
@@ -218,7 +218,7 @@ export function Contact({ profile }: ContactProps) {
         </div>
 
         {/* Footer strip */}
-        <div className="mt-14 pt-6 border-t border-cream-200 dark:border-[#2C2520] flex justify-between items-center text-xs font-mono text-ink-500 dark:text-[#7A6E66]">
+        <div className="mt-14 pt-6 border-t border-cream-200 dark:border-[#2C2520] flex justify-between items-center text-base font-pixel text-ink-500 dark:text-[#7A6E66]">
           <span>$ built by Bao Pham</span>
           <span>&lt;/portfolio.v3&gt;</span>
         </div>
