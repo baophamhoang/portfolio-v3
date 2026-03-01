@@ -9,7 +9,7 @@ const ease = [0.16, 1, 0.3, 1] as const
 const spring = { type: 'spring', stiffness: 350, damping: 30 } as const
 
 // Tailwind class safety — keep as object literals so v4 doesn't purge
-const colsMap = { 2: 'grid-cols-2', 3: 'grid-cols-3', 4: 'grid-cols-4' } as const
+const lgColsMap = { 2: 'lg:grid-cols-2', 3: 'lg:grid-cols-3', 4: 'lg:grid-cols-4' } as const
 const miniColsMap = { 1: 'grid-cols-1', 2: 'grid-cols-2' } as const
 
 type ExpandDir = 'left' | 'center' | 'right'
@@ -251,7 +251,7 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
 
         {/* ── Mode 1: Grid (no active card) ── */}
         {!activeId && (
-          <div className={`grid grid-cols-2 lg:${colsMap[cols]} gap-3 auto-rows-[160px] lg:auto-rows-[180px]`}>
+          <div className={`grid grid-cols-2 ${lgColsMap[cols]} gap-3 auto-rows-[160px] lg:auto-rows-[180px]`}>
             {projects.map((p, i) => (
               <motion.article
                 key={p.id}
