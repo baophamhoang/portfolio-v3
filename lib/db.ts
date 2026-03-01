@@ -64,7 +64,9 @@ export async function initDb() {
       featured INTEGER DEFAULT 0,
       color TEXT DEFAULT '#D97706',
       sort_order INTEGER DEFAULT 0,
-      year INTEGER DEFAULT 2024
+      year INTEGER DEFAULT 2024,
+      type TEXT DEFAULT 'personal',
+      company_name TEXT
     );
 
     CREATE TABLE IF NOT EXISTS skills (

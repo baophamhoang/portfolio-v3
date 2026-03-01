@@ -1,40 +1,44 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import { motion, LayoutGroup } from 'framer-motion'
-import { ExternalLink, Github, Star } from 'lucide-react'
-import type { Project } from '@/lib/types'
+import { useState, useEffect } from 'react';
+import { motion, LayoutGroup } from 'framer-motion';
+import { Dot, ExternalLink, Github, Star } from 'lucide-react';
+import type { Project } from '@/lib/types';
 
-const ease = [0.16, 1, 0.3, 1] as const
-const spring = { type: 'spring', stiffness: 350, damping: 30 } as const
+const ease = [0.16, 1, 0.3, 1] as const;
+const spring = { type: 'spring', stiffness: 350, damping: 30 } as const;
 
 // Tailwind class safety — keep as object literals so v4 doesn't purge
-const lgColsMap = { 2: 'lg:grid-cols-2', 3: 'lg:grid-cols-3', 4: 'lg:grid-cols-4' } as const
-const miniColsMap = { 1: 'grid-cols-1', 2: 'grid-cols-2' } as const
+const lgColsMap = {
+  2: 'lg:grid-cols-2',
+  3: 'lg:grid-cols-3',
+  4: 'lg:grid-cols-4',
+} as const;
+const miniColsMap = { 1: 'grid-cols-1', 2: 'grid-cols-2' } as const;
 
-type ExpandDir = 'left' | 'center' | 'right'
+type ExpandDir = 'left' | 'center' | 'right';
 
 function getDefaultCols(count: number): 2 | 3 | 4 {
-  if (count <= 4) return 2
-  if (count <= 9) return 3
-  return 4
+  if (count <= 4) return 2;
+  if (count <= 9) return 3;
+  return 4;
 }
 
 function getExpandDir(cardIndex: number, cols: number): ExpandDir {
-  const col = cardIndex % cols
-  if (col === 0) return 'left'
-  if (col === cols - 1) return 'right'
-  return 'center'
+  const col = cardIndex % cols;
+  if (col === 0) return 'left';
+  if (col === cols - 1) return 'right';
+  return 'center';
 }
 
 // Returns per-card height classes for a side column in center-expand mode.
 // n=1 → fixed 180px; n=2 → first fixed 180px + last stretches; n>=3 → all flex-1
 function columnHeights(n: number): ('fixed' | 'grow')[] {
-  if (n <= 0) return []
-  if (n === 1) return ['fixed']
-  const naturalH = n * 180 + (n - 1) * 8
-  if (naturalH <= 460) return [...Array(n - 1).fill('fixed'), 'grow']
-  return Array(n).fill('grow')
+  if (n <= 0) return [];
+  if (n === 1) return ['fixed'];
+  const naturalH = n * 180 + (n - 1) * 8;
+  if (naturalH <= 460) return [...Array(n - 1).fill('fixed'), 'grow'];
+  return Array(n).fill('grow');
 }
 
 // ── Card content: collapsed (grid + mini-grid) ────────────────────────────────
@@ -49,11 +53,16 @@ function CollapsedCard({ project }: { project: Project }) {
             {project.title}
           </span>
           {project.featured && (
-            <Star size={11} className="text-amber-500 fill-amber-500 shrink-0 mt-0.5" />
+            <Star
+              size={11}
+              className="text-amber-500 fill-amber-500 shrink-0 mt-0.5"
+            />
           )}
         </div>
-        <span className="font-mono text-[11px] text-ink-300 dark:text-dark-muted">
+        <span className="font-mono text-[11px] text-ink-500 dark:text-dark-muted flex items-center">
           {project.year}
+          <Dot />
+          {project.type === 'company' ? project.company_name : 'Personal'}
         </span>
         <p className="text-[12px] text-ink-400 dark:text-dark-text-secondary leading-snug line-clamp-2 mt-1">
           {project.description}
@@ -71,7 +80,7 @@ function CollapsedCard({ project }: { project: Project }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 // ── Card content: expanded ────────────────────────────────────────────────────
@@ -81,15 +90,20 @@ function ExpandedCard({ project }: { project: Project }) {
     <div className="h-full flex flex-col">
       <div className="h-1 shrink-0" style={{ background: project.color }} />
       <div className="p-6 flex flex-col gap-3 flex-1 overflow-y-auto min-h-0">
-        <span className="font-mono text-[11px] text-ink-300 dark:text-dark-muted">
+        <span className="font-mono text-[14px] text-ink-500 dark:text-dark-muted flex items-center">
           {project.year}
+          <Dot/>
+          {project.type === 'company' ? project.company_name : 'Personal'}
         </span>
         <div className="flex items-center gap-2">
           <h3 className="font-display font-bold text-xl text-ink-900 dark:text-dark-text leading-tight">
             {project.title}
           </h3>
           {project.featured && (
-            <Star size={16} className="text-amber-500 fill-amber-500 shrink-0" />
+            <Star
+              size={16}
+              className="text-amber-500 fill-amber-500 shrink-0"
+            />
           )}
         </div>
         <p className="text-[13px] text-ink-500 dark:text-dark-text-secondary leading-relaxed flex-1">
@@ -144,7 +158,7 @@ function ExpandedCard({ project }: { project: Project }) {
         </span>
       </div>
     </div>
-  )
+  );
 }
 
 // ── Mini grid: non-active cards on left or right pane ────────────────────────
@@ -153,13 +167,15 @@ function OthersMiniGrid({
   others,
   setActiveId,
 }: {
-  others: Project[]
-  setActiveId: (id: string | null) => void
+  others: Project[];
+  setActiveId: (id: string | null) => void;
 }) {
-  const miniCols: 1 | 2 = others.length <= 2 ? 1 : 2
-  const lastAlone = miniCols === 2 && others.length % 2 !== 0
+  const miniCols: 1 | 2 = others.length <= 2 ? 1 : 2;
+  const lastAlone = miniCols === 2 && others.length % 2 !== 0;
   return (
-    <div className={`flex-1 grid gap-2 ${miniColsMap[miniCols]} auto-rows-[1fr] min-h-0`}>
+    <div
+      className={`flex-1 grid gap-2 ${miniColsMap[miniCols]} auto-rows-[1fr] min-h-0`}
+    >
       {others.map((p, i) => (
         <motion.article
           key={p.id}
@@ -176,51 +192,55 @@ function OthersMiniGrid({
         </motion.article>
       ))}
     </div>
-  )
+  );
 }
 
 function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 1024)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
-  }, [])
-  return isMobile
+    const check = () => setIsMobile(window.innerWidth < 1024);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return isMobile;
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
 
 interface ProjectsProps {
-  projects: Project[]
+  projects: Project[];
 }
 
 const cardBase =
-  'rounded-2xl overflow-hidden bg-cream-50 dark:bg-dark-surface-2 border border-cream-200/60 dark:border-dark-border'
+  'rounded-2xl overflow-hidden bg-cream-50 dark:bg-dark-surface-2 border border-cream-200/60 dark:border-dark-border';
 
 export function Projects({ projects: rawProjects }: ProjectsProps) {
-  const [activeId, setActiveId] = useState<string | null>(null)
-  const isMobile = useIsMobile()
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const isMobile = useIsMobile();
 
-  const projects = rawProjects.slice(0, 12)
-  const cols = getDefaultCols(projects.length)
+  const projects = rawProjects.slice(0, 12);
+  const cols = getDefaultCols(projects.length);
 
-  const activeIndex = activeId ? projects.findIndex((p) => String(p.id) === activeId) : -1
-  const activeProject = activeIndex !== -1 ? projects[activeIndex] : null
+  const activeIndex = activeId
+    ? projects.findIndex((p) => String(p.id) === activeId)
+    : -1;
+  const activeProject = activeIndex !== -1 ? projects[activeIndex] : null;
 
-  const activeCol = activeIndex !== -1 ? activeIndex % cols : -1
-  const leftOthers = activeIndex !== -1
-    ? projects.filter((_, i) => i !== activeIndex && i % cols < activeCol)
-    : []
-  const rightOthers = activeIndex !== -1
-    ? projects.filter((_, i) => i !== activeIndex && i % cols >= activeCol)
-    : []
-  const others = projects.filter((p) => String(p.id) !== activeId)
+  const activeCol = activeIndex !== -1 ? activeIndex % cols : -1;
+  const leftOthers =
+    activeIndex !== -1
+      ? projects.filter((_, i) => i !== activeIndex && i % cols < activeCol)
+      : [];
+  const rightOthers =
+    activeIndex !== -1
+      ? projects.filter((_, i) => i !== activeIndex && i % cols >= activeCol)
+      : [];
+  const others = projects.filter((p) => String(p.id) !== activeId);
 
   // Determine expand direction, falling back if one side is empty
   const rawDir: ExpandDir | null =
-    activeId && activeIndex !== -1 ? getExpandDir(activeIndex, cols) : null
+    activeId && activeIndex !== -1 ? getExpandDir(activeIndex, cols) : null;
   const expandDir: ExpandDir | null =
     rawDir === 'center'
       ? leftOthers.length === 0
@@ -228,7 +248,7 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
         : rightOthers.length === 0
           ? 'right'
           : 'center'
-      : rawDir
+      : rawDir;
 
   return (
     <section id="projects" className="relative min-h-full py-10 px-6">
@@ -245,7 +265,9 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
           transition={{ duration: 0.5, ease }}
           className="flex items-center gap-3 mb-8"
         >
-          <span className="font-mono text-sm text-amber-600 dark:text-amber-500">03.</span>
+          <span className="font-mono text-sm text-amber-600 dark:text-amber-500">
+            03.
+          </span>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink-900 dark:text-dark-text">
             Projects
           </h2>
@@ -254,7 +276,9 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
 
         {/* ── Mode 1: Grid (no active card) ── */}
         {!activeId && (
-          <div className={`grid grid-cols-2 ${lgColsMap[cols]} gap-3 auto-rows-[160px] lg:auto-rows-[180px]`}>
+          <div
+            className={`grid grid-cols-2 ${lgColsMap[cols]} gap-3 auto-rows-[160px] lg:auto-rows-[180px]`}
+          >
             {projects.map((p, i) => (
               <motion.article
                 key={p.id}
@@ -262,7 +286,10 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
                 className={`${cardBase} cursor-pointer`}
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ layout: spring, default: { duration: 0.35, delay: i * 0.05 } }}
+                transition={{
+                  layout: spring,
+                  default: { duration: 0.35, delay: i * 0.05 },
+                }}
                 onClick={() => setActiveId(String(p.id))}
                 whileHover={{ scale: 1.015 }}
               >
@@ -288,7 +315,8 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
               </motion.article>
               <div className="grid grid-cols-2 gap-2 auto-rows-[160px]">
                 {others.map((p, i) => {
-                  const lastAlone = others.length % 2 !== 0 && i === others.length - 1
+                  const lastAlone =
+                    others.length % 2 !== 0 && i === others.length - 1;
                   return (
                     <motion.article
                       key={p.id}
@@ -300,7 +328,7 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
                     >
                       <CollapsedCard project={p} />
                     </motion.article>
-                  )
+                  );
                 })}
               </div>
             </div>
@@ -336,13 +364,15 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
               {/* Left column: cards in columns < active column */}
               <div className="flex-1 flex flex-col gap-2 min-h-0">
                 {leftOthers.map((p, i) => {
-                  const heights = columnHeights(leftOthers.length)
+                  const heights = columnHeights(leftOthers.length);
                   return (
                     <motion.article
                       key={p.id}
                       layoutId={`proj-${p.id}`}
                       className={`${cardBase} cursor-pointer ${
-                        heights[i] === 'fixed' ? 'h-[180px] shrink-0' : 'flex-1 min-h-0'
+                        heights[i] === 'fixed'
+                          ? 'h-[180px] shrink-0'
+                          : 'flex-1 min-h-0'
                       }`}
                       onClick={() => setActiveId(String(p.id))}
                       whileHover={{ scale: 1.02 }}
@@ -350,7 +380,7 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
                     >
                       <CollapsedCard project={p} />
                     </motion.article>
-                  )
+                  );
                 })}
               </div>
 
@@ -369,13 +399,15 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
               {/* Right column: cards in columns >= active column (excluding active) */}
               <div className="flex-1 flex flex-col gap-2 min-h-0">
                 {rightOthers.map((p, i) => {
-                  const heights = columnHeights(rightOthers.length)
+                  const heights = columnHeights(rightOthers.length);
                   return (
                     <motion.article
                       key={p.id}
                       layoutId={`proj-${p.id}`}
                       className={`${cardBase} cursor-pointer ${
-                        heights[i] === 'fixed' ? 'h-[180px] shrink-0' : 'flex-1 min-h-0'
+                        heights[i] === 'fixed'
+                          ? 'h-[180px] shrink-0'
+                          : 'flex-1 min-h-0'
                       }`}
                       onClick={() => setActiveId(String(p.id))}
                       whileHover={{ scale: 1.02 }}
@@ -383,7 +415,7 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
                     >
                       <CollapsedCard project={p} />
                     </motion.article>
-                  )
+                  );
                 })}
               </div>
             </div>
@@ -391,5 +423,5 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
         </LayoutGroup>
       </div>
     </section>
-  )
+  );
 }

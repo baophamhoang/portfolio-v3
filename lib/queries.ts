@@ -69,6 +69,8 @@ export async function getProjects(): Promise<Project[]> {
     color: String(row.color ?? '#D97706'),
     sort_order: Number(row.sort_order),
     year: Number(row.year ?? 2024),
+    type: (row.type as 'company' | 'personal') ?? 'personal',
+    company_name: row.company_name ? String(row.company_name) : undefined,
   }))
 }
 

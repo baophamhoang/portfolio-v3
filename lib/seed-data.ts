@@ -120,6 +120,8 @@ export const seedProjects: Project[] = [
     ],
     github_url: undefined,
     live_url: undefined,
+    type: 'company',
+    company_name: 'Spartan',
   },
   {
     id: 2,
@@ -133,6 +135,8 @@ export const seedProjects: Project[] = [
     tech_stack: ['Python', 'FastAPI', 'Selenium', 'PostgreSQL', 'AWS SQS', 'Docker'],
     github_url: undefined,
     live_url: undefined,
+    type: 'company',
+    company_name: 'Spartan',
   },
   {
     id: 3,
@@ -146,19 +150,23 @@ export const seedProjects: Project[] = [
     tech_stack: ['React', 'NestJS', 'TypeScript', 'PostgreSQL', 'Prisma', 'AWS S3', 'AWS Lambda', 'ReactFlow', 'RxJS', 'Redux'],
     github_url: undefined,
     live_url: undefined,
+    type: 'company',
+    company_name: 'Datahouse Asia',
   },
   {
     id: 4,
     featured: false,
     sort_order: 4,
-    year: 2025,
-    color: '#2563EB',
-    title: 'LiveKit Voice Agent',
+    year: 2023,
+    color: '#7C3AED',
+    title: 'DLIR UI',
     description:
-      'Python FastAPI microservice providing AI voice agents for healthcare workflows — general assistant, medical intake specialist, and appointment scheduler. Integrates LiveKit Cloud, OpenAI, Deepgram (STT), and Cartesia (TTS). Phone call support via SIP trunk.',
-    tech_stack: ['Python', 'FastAPI', 'LiveKit', 'OpenAI', 'Deepgram', 'Cartesia', 'Docker'],
+      'Government unemployment claims system for the Department of Labor and Industrial Relations. Complex multi-step form workflows, SOAP-based payment integrations, and a full AngularJS-to-Angular migration.',
+    tech_stack: ['Angular', 'TypeScript', 'NestJS', 'PostgreSQL', 'TypeORM', 'RxJS', 'Docker'],
     github_url: undefined,
     live_url: undefined,
+    type: 'company',
+    company_name: 'Datahouse Asia',
   },
   {
     id: 5,
@@ -172,6 +180,8 @@ export const seedProjects: Project[] = [
     tech_stack: ['Next.js', 'TypeScript', 'OpenAI', 'Drizzle', 'Neon', 'NextAuth', 'PayOS', 'TailwindCSS', 'Framer Motion'],
     github_url: undefined,
     live_url: undefined,
+    type: 'personal',
+    company_name: undefined,
   },
   {
     id: 6,
@@ -185,6 +195,8 @@ export const seedProjects: Project[] = [
     tech_stack: ['Next.js', 'TypeScript', 'AWS S3', 'NextAuth', 'Turso', 'Drizzle', 'TailwindCSS'],
     github_url: undefined,
     live_url: undefined,
+    type: 'personal',
+    company_name: undefined,
   },
   {
     id: 7,
@@ -198,6 +210,8 @@ export const seedProjects: Project[] = [
     tech_stack: ['Next.js', 'TypeScript', 'Supabase', 'TailwindCSS'],
     github_url: undefined,
     live_url: undefined,
+    type: 'personal',
+    company_name: undefined,
   },
 ]
 

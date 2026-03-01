@@ -40,6 +40,8 @@ export interface Project {
   color: string
   sort_order: number
   year: number
+  type: 'company' | 'personal'
+  company_name?: string
 }
 
 export interface Skill {
