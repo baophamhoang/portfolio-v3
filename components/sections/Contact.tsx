@@ -18,12 +18,22 @@ export function Contact({ profile }: ContactProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('sending')
-    await new Promise((r) => setTimeout(r, 1500))
-    setStatus('sent')
-    setTimeout(() => {
-      setStatus('idle')
-      setForm({ name: '', email: '', message: '' })
-    }, 4000)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error()
+      setStatus('sent')
+      setTimeout(() => {
+        setStatus('idle')
+        setForm({ name: '', email: '', message: '' })
+      }, 4000)
+    } catch {
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 3000)
+    }
   }
 
   const inputClass =
