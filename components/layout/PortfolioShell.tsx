@@ -23,10 +23,33 @@ const ease = [0.16, 1, 0.3, 1] as const
 const panelOrder: PanelId[] = ['home', 'work', 'projects', 'skills', 'contact']
 
 export function PortfolioShell({ profile, experience, projects, skills }: PortfolioShellProps) {
-  const [activePanel, setActivePanel] = useState<PanelId>('home')
+  const [activePanel, setActivePanel] = useState<PanelId>(() => {
+    if (typeof window === 'undefined') return 'home'
+    const hash = window.location.hash.slice(1)
+    return panelOrder.includes(hash as PanelId) ? (hash as PanelId) : 'home'
+  })
   const switchLockedRef = useRef(false)
   const accDeltaRef = useRef(0)
   const lastWheelRef = useRef(0)
+
+  // On activePanel change — update URL
+  useEffect(() => {
+    const current = window.location.hash.slice(1)
+    if (current === activePanel) return
+    const url = activePanel === 'home' ? '/' : `#${activePanel}`
+    history.pushState(null, '', url)
+  }, [activePanel])
+
+  // Browser back/forward — sync state from URL
+  useEffect(() => {
+    const onPop = () => {
+      const hash = window.location.hash.slice(1)
+      const panel = panelOrder.includes(hash as PanelId) ? (hash as PanelId) : 'home'
+      setActivePanel(panel)
+    }
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [])
 
   // Reset accumulator whenever the active panel changes so leftover
   // momentum events from the previous panel don't carry over.
