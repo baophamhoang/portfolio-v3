@@ -49,7 +49,7 @@ function CollapsedCard({ project }: { project: Project }) {
       <div className="h-1.5 shrink-0" style={{ background: project.color }} />
       <div className="p-4 flex flex-col gap-1 flex-1 overflow-hidden">
         <div className="flex items-start justify-between gap-2">
-          <span className="font-display font-bold text-sm text-ink-900 dark:text-dark-text truncate leading-snug">
+          <span className="font-pixel text-lg text-ink-900 dark:text-dark-text truncate leading-snug">
             {project.title}
           </span>
           {project.featured && (
@@ -59,20 +59,21 @@ function CollapsedCard({ project }: { project: Project }) {
             />
           )}
         </div>
-        <span className="font-pixel text-sm text-ink-500 dark:text-dark-muted flex items-center">
+        <span className="font-pixel text-sm text-ink-500 dark:text-dark-text-secondary flex items-center">
           {project.year}
           <Dot />
           {project.type === 'company' ? project.company_name : 'Personal'}
         </span>
-        <p className="text-[12px] text-ink-400 dark:text-dark-text-secondary leading-snug line-clamp-2 mt-1">
+        <p className="text-sm text-ink-600 dark:text-dark-text leading-snug line-clamp-2 mt-1">
           {project.description}
         </p>
         <div className="flex flex-wrap gap-1 mt-auto pt-2">
           {project.tech_stack.slice(0, 3).map((tech) => (
             <span
               key={tech}
-              className="px-1.5 py-0.5 text-[10px] font-mono
-                bg-cream-100/80 dark:bg-dark-surface-2 text-ink-400 dark:text-dark-text-secondary"
+              className="px-1.5 py-0.5 text-[11px] font-mono
+                bg-cream-200 dark:bg-dark-bg text-ink-800 dark:text-dark-text
+                border border-cream-300 dark:border-amber-900/50"
             >
               {tech}
             </span>
@@ -90,13 +91,13 @@ function ExpandedCard({ project }: { project: Project }) {
     <div className="h-full flex flex-col">
       <div className="h-1 shrink-0" style={{ background: project.color }} />
       <div className="p-6 flex flex-col gap-3 flex-1 overflow-y-auto min-h-0">
-        <span className="font-pixel text-lg text-ink-500 dark:text-dark-muted flex items-center">
+        <span className="font-pixel text-lg text-ink-500 dark:text-dark-text-secondary flex items-center">
           {project.year}
           <Dot/>
           {project.type === 'company' ? project.company_name : 'Personal'}
         </span>
         <div className="flex items-center gap-2">
-          <h3 className="font-display font-bold text-xl text-ink-900 dark:text-dark-text leading-tight">
+          <h3 className="font-pixel text-2xl text-ink-900 dark:text-dark-text leading-tight">
             {project.title}
           </h3>
           {project.featured && (
@@ -106,16 +107,16 @@ function ExpandedCard({ project }: { project: Project }) {
             />
           )}
         </div>
-        <p className="text-[13px] text-ink-500 dark:text-dark-text-secondary leading-relaxed flex-1">
+        <p className="text-sm text-ink-600 dark:text-dark-text leading-relaxed flex-1">
           {project.description}
         </p>
         <div className="flex flex-wrap gap-1.5">
           {project.tech_stack.map((tech) => (
             <span
               key={tech}
-              className="px-2 py-0.5 text-[11px] font-mono
-                bg-cream-100/80 dark:bg-dark-surface-2 text-ink-500 dark:text-dark-text-secondary
-                border border-cream-200/60 dark:border-dark-border"
+              className="px-2 py-0.5 text-xs font-mono
+                bg-cream-200 dark:bg-dark-bg text-ink-800 dark:text-dark-text
+                border border-cream-300 dark:border-amber-900/50"
             >
               {tech}
             </span>
@@ -253,6 +254,8 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
 
   return (
     <section id="projects" className="relative min-h-full py-10 px-6">
+      {/* Ambient amber glow */}
+      <div className="absolute top-0 left-0 w-[700px] h-[700px] bg-amber-500/8 dark:bg-amber-500/20 blur-3xl pointer-events-none rounded-full" />
       {/* Decorative watermark */}
       <div className="absolute top-4 right-6 font-pixel text-[8rem] leading-none text-ink-900/[0.05] dark:text-white/[0.04] select-none pointer-events-none">
         03

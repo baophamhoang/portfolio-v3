@@ -15,6 +15,8 @@ const navLinks: { label: string; id: PanelId }[] = [
   { label: 'Contact', id: 'contact' },
 ]
 
+const panelOrder: PanelId[] = ['home', 'work', 'projects', 'skills', 'contact']
+
 interface SidebarProps {
   activePanel: PanelId
   setActivePanel: (id: PanelId) => void
@@ -112,14 +114,14 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
   return (
     <>
       {/* ── Desktop Sidebar ── */}
-      <aside className="fixed top-0 left-0 z-30 h-screen w-[240px] hidden lg:flex flex-col bg-cream-50 dark:bg-dark-surface border-r border-cream-200 dark:border-dark-border px-4 py-6">
+      <aside className="fixed top-0 left-0 z-30 h-screen w-[240px] hidden lg:flex flex-col bg-cream-50 dark:bg-dark-surface border-r border-cream-200 dark:border-amber-900/60 px-4 py-6">
         {/* Logo */}
         <button type="button" onClick={() => handleNav('home')} className="flex items-center gap-3 mb-8 group text-left">
           <div className="w-10 h-10 bg-amber-600 dark:bg-amber-500 flex items-center justify-center text-white font-mono font-bold text-sm shrink-0 border-2 border-amber-800 dark:border-amber-400">
             BP
           </div>
           <div>
-            <div className="font-display font-semibold text-ink-900 dark:text-dark-text text-sm tracking-tight leading-tight">
+            <div className="font-pixel text-lg text-ink-900 dark:text-dark-text leading-tight">
               bao<span className="text-amber-600 dark:text-amber-500">.</span>pham
             </div>
             <div className="text-xs text-ink-400 dark:text-dark-muted font-mono leading-tight">
@@ -162,17 +164,48 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
         </div>
       </aside>
 
-      {/* ── Mobile: floating hamburger ── */}
-      <motion.button
+      {/* ── Mobile: ▲▼ nav + hamburger column ── */}
+      <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.5 }}
-        onClick={() => setMobileOpen(true)}
-        className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-amber-600 dark:bg-amber-500 text-white shadow-lg lg:hidden flex items-center justify-center hover:bg-amber-700 dark:hover:bg-amber-600 transition-colors border-2 border-amber-800 dark:border-amber-300"
-        aria-label="Open menu"
+        className="fixed bottom-6 right-6 z-50 lg:hidden flex flex-col gap-2 items-center"
       >
-        <Menu size={20} />
-      </motion.button>
+        {(() => {
+          const idx = panelOrder.indexOf(activePanel)
+          const btnClass = "w-12 h-12 font-pixel text-xl bg-amber-600 dark:bg-amber-500 text-white border-2 border-amber-800 dark:border-amber-300 shadow-[3px_3px_0px_#1C1815] dark:shadow-[3px_3px_0px_#F0EDE8] flex items-center justify-center"
+          const tapProps = { whileTap: { x: 3, y: 3, boxShadow: '0px 0px 0px #1C1815' }, transition: { duration: 0 } } as const
+          return (
+            <>
+              <motion.button
+                onClick={() => { if (idx > 0) setActivePanel(panelOrder[idx - 1]) }}
+                className={btnClass}
+                {...tapProps}
+                aria-label="Previous panel"
+              >
+                ▲
+              </motion.button>
+              <motion.button
+                onClick={() => { if (idx < panelOrder.length - 1) setActivePanel(panelOrder[idx + 1]) }}
+                className={btnClass}
+                {...tapProps}
+                aria-label="Next panel"
+              >
+                ▼
+              </motion.button>
+            </>
+          )
+        })()}
+        <motion.button
+          onClick={() => setMobileOpen(true)}
+          className="w-12 h-12 font-pixel text-xl bg-amber-600 dark:bg-amber-500 text-white border-2 border-amber-800 dark:border-amber-300 shadow-[3px_3px_0px_#1C1815] dark:shadow-[3px_3px_0px_#F0EDE8] flex items-center justify-center"
+          whileTap={{ x: 3, y: 3, boxShadow: '0px 0px 0px #1C1815' }}
+          transition={{ duration: 0 }}
+          aria-label="Open menu"
+        >
+          <Menu size={20} />
+        </motion.button>
+      </motion.div>
 
       {/* ── Mobile Drawer ── */}
       <AnimatePresence>
@@ -203,7 +236,7 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
                     BP
                   </div>
                   <div>
-                    <div className="font-display font-semibold text-ink-900 dark:text-dark-text text-sm tracking-tight leading-tight">
+                    <div className="font-pixel text-lg text-ink-900 dark:text-dark-text leading-tight">
                       bao<span className="text-amber-600 dark:text-amber-500">.</span>pham
                     </div>
                     <div className="text-xs text-ink-400 dark:text-dark-muted font-mono leading-tight">

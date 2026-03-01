@@ -141,7 +141,7 @@ export function PortfolioShell({ profile, experience, projects, skills }: Portfo
               initial={{ opacity: 0, scale: 1.03 }}
               animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, ease } }}
               exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.22 } }}
-              className="absolute inset-0 overflow-y-auto bg-[#F7F3EC] dark:bg-[#0E0D0C] scanlines pixel-grid"
+              className="absolute inset-0 overflow-y-auto bg-[#F7F3EC] dark:bg-[#0E0D0C] scanlines pixel-grid warm-panel"
               onWheel={handleWheel}
             >
               <Hero profile={profile} setActivePanel={setActivePanel} />
@@ -153,7 +153,7 @@ export function PortfolioShell({ profile, experience, projects, skills }: Portfo
               initial={{ opacity: 0, scale: 1.03 }}
               animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, ease } }}
               exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.22 } }}
-              className="absolute inset-0 overflow-y-auto bg-[#F0EDE8] dark:bg-[#141210] scanlines pixel-grid"
+              className="absolute inset-0 overflow-y-auto bg-[#F0EDE8] dark:bg-[#141210] scanlines pixel-grid warm-panel"
               onWheel={handleWheel}
             >
               <Work experience={experience} />
@@ -165,7 +165,7 @@ export function PortfolioShell({ profile, experience, projects, skills }: Portfo
               initial={{ opacity: 0, scale: 1.03 }}
               animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, ease } }}
               exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.22 } }}
-              className="absolute inset-0 overflow-y-auto bg-[#ECEBE6] dark:bg-[#131211] scanlines pixel-grid"
+              className="absolute inset-0 overflow-y-auto bg-[#ECEBE6] dark:bg-[#131211] scanlines pixel-grid warm-panel"
               onWheel={handleWheel}
             >
               <Projects projects={projects} />
@@ -177,7 +177,7 @@ export function PortfolioShell({ profile, experience, projects, skills }: Portfo
               initial={{ opacity: 0, scale: 1.03 }}
               animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, ease } }}
               exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.22 } }}
-              className="absolute inset-0 overflow-y-auto bg-[#FFFBEB] dark:bg-[#110F0E] scanlines pixel-grid"
+              className="absolute inset-0 overflow-y-auto bg-[#FFFBEB] dark:bg-[#110F0E] scanlines pixel-grid warm-panel"
               onWheel={handleWheel}
             >
               <Skills skills={skills} profile={profile} />
@@ -189,7 +189,7 @@ export function PortfolioShell({ profile, experience, projects, skills }: Portfo
               initial={{ opacity: 0, scale: 1.03 }}
               animate={{ opacity: 1, scale: 1, transition: { duration: 0.3, ease } }}
               exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.22 } }}
-              className="absolute inset-0 overflow-y-auto bg-[#EDE8DF] dark:bg-[#1A1917] scanlines pixel-grid"
+              className="absolute inset-0 overflow-y-auto bg-[#EDE8DF] dark:bg-[#1A1917] scanlines pixel-grid warm-panel"
               onWheel={handleWheel}
             >
               <Contact profile={profile} />

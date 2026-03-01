@@ -24,6 +24,8 @@ export function Skills({ skills, profile }: SkillsProps) {
 
   return (
     <section id="skills" className="relative min-h-full py-10 px-6">
+      {/* Ambient amber glow */}
+      <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-amber-500/8 dark:bg-amber-500/20 blur-3xl pointer-events-none rounded-full" />
       {/* Decorative watermark */}
       <div className="absolute top-4 right-6 font-pixel text-[8rem] leading-none text-ink-900/[0.05] dark:text-white/[0.04] select-none pointer-events-none">
         04

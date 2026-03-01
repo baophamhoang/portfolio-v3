@@ -204,8 +204,17 @@ body {
 }
 .dark .pixel-grid {
   background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(245,158,11,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,158,11,0.08) 1px, transparent 1px);
+}
+
+/* Warm CRT panel bloom */
+.dark .warm-panel {
+  background-image: radial-gradient(
+    ellipse 70% 50% at 20% 10%,
+    rgba(245, 158, 11, 0.06) 0%,
+    transparent 100%
+  );
 }
 
 /* Retro scanlines overlay */
@@ -225,8 +234,11 @@ body {
 }
 .dark .scanlines::after {
   background: repeating-linear-gradient(
-    0deg, transparent, transparent 2px,
-    rgba(0, 0, 0, 0.12) 2px, rgba(0, 0, 0, 0.12) 4px
+    0deg,
+    rgba(255, 190, 60, 0.10) 0px,
+    rgba(255, 190, 60, 0.10) 1px,
+    transparent 1px,
+    transparent 3px
   );
 }
 
@@ -252,6 +264,14 @@ body {
   text-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
 }
 
+.dark h2.font-pixel,
+.dark h3.font-pixel {
+  text-shadow:
+    0 0 20px rgba(245, 158, 11, 0.7),
+    0 0 50px rgba(245, 158, 11, 0.35),
+    0 0 100px rgba(245, 158, 11, 0.12);
+}
+
 /* Noise texture overlay */
 .noise-overlay {
   position: relative;
@@ -272,8 +292,8 @@ body {
   box-shadow: 4px 4px 0px #C4B5A0;
 }
 .dark .retro-border {
-  border: 2px solid #2C2A27;
-  box-shadow: 4px 4px 0px #2C2A27;
+  border: 2px solid #D97706;
+  box-shadow: 4px 4px 0px #92400E;
 }
 
 /* Card hover lift */
@@ -399,7 +419,7 @@ body {
 .dark .btn-retro {
   border-color: #F0EDE8;
   box-shadow: 4px 4px 0px #F0EDE8;
-  color: #1C1815;
+  color: #ffffff;
 }
 .dark .btn-retro:active {
   box-shadow: 0px 0px 0px #F0EDE8;
@@ -430,10 +450,10 @@ body {
 .dark .btn-retro-ghost {
   color: #F0EDE8;
   border-color: #F0EDE8;
-  box-shadow: 3px 3px 0px #3D3530;
+  box-shadow: 3px 3px 0px #6B5E4A;
 }
 .dark .btn-retro-ghost:active {
-  box-shadow: 0px 0px 0px #3D3530;
+  box-shadow: 0px 0px 0px #6B5E4A;
 }
 
 /* Retro card hover */

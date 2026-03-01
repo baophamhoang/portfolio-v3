@@ -36,7 +36,7 @@ export function Hero({ profile, setActivePanel }: HeroProps) {
   return (
     <section id="hero" className="relative overflow-hidden h-full flex items-center py-12 lg:py-16">
       {/* Single amber glow top-right */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-300/10 dark:bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-amber-300/10 dark:bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-5xl mx-auto px-6 w-full">
         <div className="grid lg:grid-cols-[1fr_360px] gap-10 lg:gap-12 items-center">
@@ -68,7 +68,7 @@ export function Hero({ profile, setActivePanel }: HeroProps) {
 
             {/* Role */}
             <motion.div variants={item}>
-              <p className="font-display text-xl sm:text-2xl font-semibold text-amber-600 dark:text-amber-500">
+              <p className="font-pixel text-2xl sm:text-3xl text-amber-600 dark:text-amber-500">
                 {profile.title}
               </p>
             </motion.div>
@@ -113,14 +113,14 @@ export function Hero({ profile, setActivePanel }: HeroProps) {
             {/* Meta info row */}
             <motion.div
               variants={item}
-              className="flex flex-wrap items-center gap-4 pt-2 text-xs text-ink-400 dark:text-dark-muted font-mono"
+              className="flex flex-wrap items-center gap-4 pt-2 text-sm text-ink-600 dark:text-dark-text-secondary font-mono"
             >
               <span className="flex items-center gap-1.5">
-                <MapPin size={11} className="text-amber-500" />
+                <MapPin size={13} className="text-amber-500" />
                 {profile.location}
               </span>
               <span className="flex items-center gap-1.5">
-                <Mail size={11} className="text-amber-500" />
+                <Mail size={13} className="text-amber-500" />
                 {profile.email}
               </span>
               <span className="flex items-center gap-1.5">

@@ -37,12 +37,12 @@ export function Contact({ profile }: ContactProps) {
   }
 
   const inputClass =
-    'w-full px-3 py-2 bg-transparent border-b-2 border-ink-300 dark:border-dark-border text-ink-900 dark:text-[#F0EDE8] font-pixel text-lg placeholder:text-ink-300 dark:placeholder:text-dark-muted focus:outline-none focus:border-amber-600 dark:focus:border-amber-500 transition-colors duration-100'
+    'w-full px-3 py-2 bg-transparent border-b-2 border-ink-300 dark:border-dark-border text-ink-900 dark:text-dark-text font-pixel text-lg placeholder:text-ink-300 dark:placeholder:text-dark-muted focus:outline-none focus:border-amber-600 dark:focus:border-amber-500 transition-colors duration-100'
 
   return (
     <section id="contact" className="relative min-h-full py-10 px-6">
       {/* Ambient glow */}
-      <div className="absolute top-0 left-0 w-80 h-80 bg-amber-500/5 dark:bg-amber-900/10 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-amber-500/8 dark:bg-amber-500/20 blur-3xl pointer-events-none rounded-full" />
 
       {/* Decorative watermark */}
       <div className="absolute top-4 right-6 font-pixel text-[8rem] leading-none text-ink-900/[0.05] dark:text-white/[0.04] select-none pointer-events-none">
@@ -61,7 +61,7 @@ export function Contact({ profile }: ContactProps) {
           <h2 className="font-pixel text-4xl sm:text-5xl text-ink-900 dark:text-dark-text">
             Get in touch
           </h2>
-          <div className="flex-1 h-px bg-cream-200 dark:bg-[#3A3228] ml-4 max-w-xs hidden sm:block" />
+          <div className="flex-1 h-px bg-cream-200 dark:bg-dark-border ml-4 max-w-xs hidden sm:block" />
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -96,7 +96,7 @@ export function Contact({ profile }: ContactProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="w-10 h-10 flex items-center justify-center bg-white/70 dark:bg-[#221E1C] border-2 border-ink-300 dark:border-dark-border text-ink-500 dark:text-[#B0A498] hover:border-amber-500 dark:hover:border-amber-600 hover:text-ink-900 dark:hover:text-[#F7F3EC] transition-colors duration-100"
+                className="w-10 h-10 flex items-center justify-center bg-white/70 dark:bg-dark-surface-2 border-2 border-ink-300 dark:border-dark-border text-ink-500 dark:text-dark-text-secondary hover:border-amber-500 dark:hover:border-amber-500 hover:text-ink-900 dark:hover:text-dark-text transition-colors duration-100"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -107,7 +107,7 @@ export function Contact({ profile }: ContactProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="w-10 h-10 flex items-center justify-center bg-white/70 dark:bg-[#221E1C] border-2 border-ink-300 dark:border-dark-border text-ink-500 dark:text-[#B0A498] hover:border-amber-500 dark:hover:border-amber-600 hover:text-ink-900 dark:hover:text-[#F7F3EC] transition-colors duration-100"
+                className="w-10 h-10 flex items-center justify-center bg-white/70 dark:bg-dark-surface-2 border-2 border-ink-300 dark:border-dark-border text-ink-500 dark:text-dark-text-secondary hover:border-amber-500 dark:hover:border-amber-500 hover:text-ink-900 dark:hover:text-dark-text transition-colors duration-100"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -118,7 +118,7 @@ export function Contact({ profile }: ContactProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter"
-                className="w-10 h-10 flex items-center justify-center bg-white/70 dark:bg-[#221E1C] border-2 border-ink-300 dark:border-dark-border text-ink-500 dark:text-[#B0A498] hover:border-amber-500 dark:hover:border-amber-600 hover:text-ink-900 dark:hover:text-[#F7F3EC] transition-colors duration-100"
+                className="w-10 h-10 flex items-center justify-center bg-white/70 dark:bg-dark-surface-2 border-2 border-ink-300 dark:border-dark-border text-ink-500 dark:text-dark-text-secondary hover:border-amber-500 dark:hover:border-amber-500 hover:text-ink-900 dark:hover:text-dark-text transition-colors duration-100"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -135,10 +135,10 @@ export function Contact({ profile }: ContactProps) {
           >
             <form
               onSubmit={handleSubmit}
-              className="bg-white/50 dark:bg-[#221E1C] retro-border p-5 flex flex-col gap-5"
+              className="bg-white/50 dark:bg-dark-surface-2 retro-border p-5 flex flex-col gap-5"
             >
               <div className="flex flex-col gap-1.5 field-pixel-cursor">
-                <label htmlFor="contact-name" className="text-xs font-medium text-ink-500 dark:text-[#7A6E66] uppercase tracking-wider">
+                <label htmlFor="contact-name" className="text-xs font-medium text-ink-500 dark:text-dark-muted uppercase tracking-wider">
                   Name
                 </label>
                 <input
@@ -153,7 +153,7 @@ export function Contact({ profile }: ContactProps) {
               </div>
 
               <div className="flex flex-col gap-1.5 field-pixel-cursor">
-                <label htmlFor="contact-email" className="text-xs font-medium text-ink-500 dark:text-[#7A6E66] uppercase tracking-wider">
+                <label htmlFor="contact-email" className="text-xs font-medium text-ink-500 dark:text-dark-muted uppercase tracking-wider">
                   Email
                 </label>
                 <input
@@ -168,7 +168,7 @@ export function Contact({ profile }: ContactProps) {
               </div>
 
               <div className="flex flex-col gap-1.5 field-pixel-cursor">
-                <label htmlFor="contact-message" className="text-xs font-medium text-ink-500 dark:text-[#7A6E66] uppercase tracking-wider">
+                <label htmlFor="contact-message" className="text-xs font-medium text-ink-500 dark:text-dark-muted uppercase tracking-wider">
                   Message
                 </label>
                 <textarea
@@ -209,7 +209,7 @@ export function Contact({ profile }: ContactProps) {
                 {status === 'error' && 'Try again'}
               </motion.button>
 
-              <p className="text-xs text-center text-ink-400 dark:text-[#7A6E66]">
+              <p className="text-xs text-center text-ink-400 dark:text-dark-muted">
                 I typically respond within 24 hours ✌️
               </p>
             </form>
@@ -217,7 +217,7 @@ export function Contact({ profile }: ContactProps) {
         </div>
 
         {/* Footer strip */}
-        <div className="mt-14 pt-6 border-t border-cream-200 dark:border-[#2C2520] flex justify-between items-center text-base font-pixel text-ink-500 dark:text-[#7A6E66]">
+        <div className="mt-14 pt-6 border-t border-cream-200 dark:border-dark-border flex justify-between items-center text-base font-pixel text-ink-500 dark:text-dark-muted">
           <span>$ built by Bao Pham</span>
           <span>&lt;/portfolio.v3&gt;</span>
         </div>
