@@ -34,7 +34,7 @@ interface HeroProps {
 
 export function Hero({ profile, setActivePanel }: HeroProps) {
   return (
-    <section id="hero" className="relative overflow-hidden h-full flex items-center py-12 lg:py-16">
+    <section id="hero" className="relative overflow-hidden min-h-[100dvh] h-full flex items-center py-12 lg:py-16">
       {/* Single amber glow top-right */}
       <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-amber-300/10 dark:bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
 
