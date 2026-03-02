@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://phambao.dev'),
   title: 'Bao Pham — Software Engineer',
   description:
-    'Full-stack software engineer specializing in TypeScript/JavaScript across the entire stack — NestJS APIs, SQS workers, and Next.js frontends.',
+    'Full-stack engineer who ships end-to-end — from scalable backends and AI integrations to polished frontends.',
   keywords: [
     'Frontend Engineer',
     'Software Engineer',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://phambao.dev' },
   openGraph: {
     title: 'Bao Pham — Software Engineer',
-    description: 'Building robust systems at the intersection of product, AI, and engineering.',
+    description: 'Building robust systems at the intersection of AI, healthcare, and full-stack engineering.',
     type: 'website',
     url: 'https://phambao.dev',
     siteName: 'Bao Pham',
@@ -60,8 +60,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Bao Pham — Software Engineer',
-    description: 'Building robust systems at the intersection of product, AI, and engineering.',
-    creator: '@phambao',
+    description: 'Building robust systems at the intersection of AI, healthcare, and full-stack engineering.',
+    creator: '@baophamhoang',
   },
 }
 
@@ -77,7 +77,7 @@ export default function RootLayout({
     alternateName: 'Pham Hoang Bao',
     url: 'https://phambao.dev',
     jobTitle: 'Software Engineer',
-    sameAs: ['https://github.com/baopham', 'https://linkedin.com/in/baopham'],
+    sameAs: ['https://github.com/baophamhoang', 'https://linkedin.com/in/baophamhoang'],
   })
 
   return (
