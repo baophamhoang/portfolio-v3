@@ -64,13 +64,13 @@ function ExperienceRow({
         onClick={() => onToggle(String(exp.id))}
         className="w-full text-left flex items-center gap-4 py-5 group"
       >
-        <span className="text-xs font-mono text-ink-300 dark:text-dark-muted shrink-0 w-44">
+        <span className="text-base font-pixel text-ink-400 dark:text-dark-text-secondary shrink-0 w-44">
           {formatDate(exp.start_date)} — {exp.end_date ? formatDate(exp.end_date) : 'Present'}
           {' · '}{getDuration(exp.start_date, exp.end_date)}
         </span>
-        <span className="font-display text-sm font-bold text-ink-900 dark:text-dark-text flex-1 text-left">
+        <span className="font-pixel text-lg text-ink-900 dark:text-dark-text flex-1 text-left">
           {exp.role}
-          <span className="font-normal text-amber-600 dark:text-amber-500 ml-1.5">
+          <span className="text-amber-600 dark:text-amber-500 ml-1.5">
             @ {exp.company}
           </span>
         </span>
@@ -89,14 +89,23 @@ function ExperienceRow({
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <div className="pb-4 pl-0 pr-4">
-              <p className="text-[13px] text-ink-500 dark:text-dark-text-secondary leading-relaxed mb-2.5">
+            <div className="pb-4 px-4 retro-border ml-0 mb-3 p-3">
+              <p className="text-sm text-ink-600 dark:text-dark-text leading-relaxed mb-2.5">
                 {exp.description}
               </p>
               <div className="flex items-center gap-3">
-                <p className="text-[11px] font-mono text-ink-300 dark:text-dark-muted flex-1">
-                  {exp.tech_stack.slice(0, 6).join(' · ')}
-                </p>
+                <div className="flex flex-wrap gap-1 flex-1">
+                  {exp.tech_stack.slice(0, 6).map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-1.5 py-0.5 text-[11px] font-mono
+                        bg-cream-200 dark:bg-dark-bg text-ink-800 dark:text-dark-text
+                        border border-cream-300 dark:border-amber-900/50"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
                 {exp.company_url && (
                   <a
                     href={exp.company_url}
@@ -123,14 +132,16 @@ interface WorkProps {
 }
 
 export function Work({ experience }: WorkProps) {
-  const [activeId, setActiveId] = useState<string | null>(experience[0] ? String(experience[0].id) : null)
+  const [activeId, setActiveId] = useState<string | null>(null)
 
   const toggle = (id: string) => setActiveId((prev) => (prev === id ? null : id))
 
   return (
     <section id="work" className="relative min-h-full py-10 px-6">
+      {/* Ambient amber glow */}
+      <div className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-amber-500/8 dark:bg-amber-500/20 blur-3xl pointer-events-none rounded-full" />
       {/* Decorative watermark */}
-      <div className="absolute top-4 right-6 font-display font-black text-[8rem] leading-none text-ink-900/[0.04] dark:text-white/[0.03] select-none pointer-events-none">
+      <div className="absolute top-4 right-6 font-pixel text-[8rem] leading-none text-ink-900/[0.05] dark:text-white/[0.04] select-none pointer-events-none">
         02
       </div>
 
@@ -142,8 +153,8 @@ export function Work({ experience }: WorkProps) {
           transition={{ duration: 0.5, ease }}
           className="flex items-center gap-3 mb-8"
         >
-          <span className="font-mono text-sm text-amber-600 dark:text-amber-500">02.</span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-ink-900 dark:text-dark-text">
+          <span className="font-pixel text-2xl text-amber-600 dark:text-amber-500 leading-none">02.</span>
+          <h2 className="font-pixel text-4xl sm:text-5xl text-ink-900 dark:text-dark-text">
             Work
           </h2>
           <div className="flex-1 h-px bg-cream-200 dark:bg-dark-border ml-4 max-w-xs" />

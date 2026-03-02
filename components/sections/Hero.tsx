@@ -34,9 +34,9 @@ interface HeroProps {
 
 export function Hero({ profile, setActivePanel }: HeroProps) {
   return (
-    <section id="hero" className="relative overflow-hidden h-full flex items-center py-12 lg:py-16">
+    <section id="hero" className="relative overflow-hidden min-h-[100dvh] h-full flex items-center py-12 lg:py-16">
       {/* Single amber glow top-right */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-300/10 dark:bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-amber-300/10 dark:bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-5xl mx-auto px-6 w-full">
         <div className="grid lg:grid-cols-[1fr_360px] gap-10 lg:gap-12 items-center">
@@ -50,9 +50,9 @@ export function Hero({ profile, setActivePanel }: HeroProps) {
           >
             {/* Status badge */}
             <motion.div variants={item}>
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20 text-green-700 dark:text-green-400 text-xs font-mono">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                Open to new opportunities
+              <span className="inline-flex items-center gap-2 px-3 py-1 font-pixel text-lg text-green-600 dark:text-green-400 border-2 border-green-500/50 dark:border-green-500/30">
+                <span className="w-2 h-2 bg-green-500 animate-pulse" />
+                [ONLINE] Open to new opportunities
               </span>
             </motion.div>
 
@@ -61,14 +61,14 @@ export function Hero({ profile, setActivePanel }: HeroProps) {
               <p className="text-sm font-mono text-ink-400 dark:text-dark-muted mb-1 tracking-widest uppercase">
                 Hello, I&apos;m
               </p>
-              <h1 className="font-display font-bold text-ink-900 dark:text-dark-text leading-[1.05] tracking-tight text-7xl sm:text-8xl lg:text-8xl">
+              <h1 className="font-pixel text-ink-900 dark:text-dark-text leading-[1.05] text-7xl sm:text-8xl lg:text-8xl glow-amber">
                 {profile.name}
               </h1>
             </motion.div>
 
             {/* Role */}
             <motion.div variants={item}>
-              <p className="font-display text-xl sm:text-2xl font-semibold text-amber-600 dark:text-amber-500">
+              <p className="font-pixel text-2xl sm:text-3xl text-amber-600 dark:text-amber-500">
                 {profile.title}
               </p>
             </motion.div>
@@ -86,7 +86,7 @@ export function Hero({ profile, setActivePanel }: HeroProps) {
               <button
                 type="button"
                 onClick={() => setActivePanel('work')}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-600 dark:bg-amber-500 text-white font-medium text-sm shadow-sm hover:bg-amber-700 dark:hover:bg-amber-600 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
+                className="btn-retro"
               >
                 View my work
               </button>
@@ -94,7 +94,7 @@ export function Hero({ profile, setActivePanel }: HeroProps) {
                 href={profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-cream-300 dark:border-dark-border text-ink-600 dark:text-dark-text-secondary font-medium text-sm hover:bg-cream-100 dark:hover:bg-dark-surface transition-all duration-200 hover:-translate-y-0.5"
+                className="btn-retro-ghost"
               >
                 <Github size={15} />
                 GitHub
@@ -103,7 +103,7 @@ export function Hero({ profile, setActivePanel }: HeroProps) {
                 href={profile.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-cream-300 dark:border-dark-border text-ink-600 dark:text-dark-text-secondary font-medium text-sm hover:bg-cream-100 dark:hover:bg-dark-surface transition-all duration-200 hover:-translate-y-0.5"
+                className="btn-retro-ghost"
               >
                 <Linkedin size={15} />
                 LinkedIn
@@ -113,14 +113,14 @@ export function Hero({ profile, setActivePanel }: HeroProps) {
             {/* Meta info row */}
             <motion.div
               variants={item}
-              className="flex flex-wrap items-center gap-4 pt-2 text-xs text-ink-400 dark:text-dark-muted font-mono"
+              className="flex flex-wrap items-center gap-4 pt-2 text-sm text-ink-600 dark:text-dark-text-secondary font-mono"
             >
               <span className="flex items-center gap-1.5">
-                <MapPin size={11} className="text-amber-500" />
+                <MapPin size={13} className="text-amber-500" />
                 {profile.location}
               </span>
               <span className="flex items-center gap-1.5">
-                <Mail size={11} className="text-amber-500" />
+                <Mail size={13} className="text-amber-500" />
                 {profile.email}
               </span>
               <span className="flex items-center gap-1.5">

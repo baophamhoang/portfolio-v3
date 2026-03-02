@@ -121,6 +121,19 @@
   50% { transform: translateY(-6px); }
 }
 
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-8px) rotate(-1deg); }
+  20% { transform: translateX(8px) rotate(1deg); }
+  30% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  50% { transform: translateX(-4px) rotate(-0.5deg); }
+  60% { transform: translateX(4px) rotate(0.5deg); }
+  70% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+  90% { transform: translateX(-1px); }
+}
+
 @keyframes pulse-ring {
   0% { transform: scale(0.8); opacity: 1; }
   100% { transform: scale(2.4); opacity: 0; }
@@ -191,8 +204,17 @@ body {
 }
 .dark .pixel-grid {
   background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(245,158,11,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,158,11,0.08) 1px, transparent 1px);
+}
+
+/* Warm CRT panel bloom */
+.dark .warm-panel {
+  background-image: radial-gradient(
+    ellipse 70% 50% at 20% 10%,
+    rgba(245, 158, 11, 0.06) 0%,
+    transparent 100%
+  );
 }
 
 /* Retro scanlines overlay */
@@ -204,11 +226,20 @@ body {
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 0, 0, 0.015) 2px,
-    rgba(0, 0, 0, 0.015) 4px
+    rgba(0, 0, 0, 0.06) 2px,
+    rgba(0, 0, 0, 0.06) 4px
   );
   pointer-events: none;
   z-index: 10;
+}
+.dark .scanlines::after {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 190, 60, 0.10) 0px,
+    rgba(255, 190, 60, 0.10) 1px,
+    transparent 1px,
+    transparent 3px
+  );
 }
 
 /* Gradient text */
@@ -233,6 +264,14 @@ body {
   text-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
 }
 
+.dark h2.font-pixel,
+.dark h3.font-pixel {
+  text-shadow:
+    0 0 20px rgba(245, 158, 11, 0.7),
+    0 0 50px rgba(245, 158, 11, 0.35),
+    0 0 100px rgba(245, 158, 11, 0.12);
+}
+
 /* Noise texture overlay */
 .noise-overlay {
   position: relative;
@@ -253,8 +292,8 @@ body {
   box-shadow: 4px 4px 0px #C4B5A0;
 }
 .dark .retro-border {
-  border: 2px solid #2C2A27;
-  box-shadow: 4px 4px 0px #2C2A27;
+  border: 2px solid #D97706;
+  box-shadow: 4px 4px 0px #92400E;
 }
 
 /* Card hover lift */
@@ -294,6 +333,9 @@ body {
 }
 .animate-marquee {
   animation: marquee 20s linear infinite;
+}
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
 }
 
 /* Focus ring */
@@ -338,6 +380,93 @@ body {
 /* Sidebar body lock */
 .sidebar-open {
   overflow: hidden;
+}
+
+/* Pixel cursor on focused form fields — shows blinking █ after label text */
+.field-pixel-cursor:focus-within label::after {
+  content: ' █';
+  font-family: var(--font-pixel);
+  animation: blink-cursor 1s step-end infinite;
+  color: #D97706;
+}
+.dark .field-pixel-cursor:focus-within label::after {
+  color: #F59E0B;
+}
+
+/* Retro button */
+.btn-retro {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  font-family: var(--font-pixel);
+  font-size: 1.125rem;
+  line-height: 1;
+  background: #D97706;
+  color: #fff;
+  border: 2px solid #1C1815;
+  box-shadow: 4px 4px 0px #1C1815;
+  cursor: pointer;
+  transition: box-shadow 0.05s step-end, transform 0.05s step-end;
+}
+.btn-retro:hover {
+  background: #F59E0B;
+}
+.btn-retro:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px #1C1815;
+}
+.dark .btn-retro {
+  border-color: #F0EDE8;
+  box-shadow: 4px 4px 0px #F0EDE8;
+  color: #ffffff;
+}
+.dark .btn-retro:active {
+  box-shadow: 0px 0px 0px #F0EDE8;
+}
+/* Ghost variant for secondary buttons */
+.btn-retro-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  font-family: var(--font-pixel);
+  font-size: 1.125rem;
+  line-height: 1;
+  background: transparent;
+  color: #1C1815;
+  border: 2px solid #1C1815;
+  box-shadow: 3px 3px 0px #C4B5A0;
+  cursor: pointer;
+  transition: box-shadow 0.05s step-end, transform 0.05s step-end;
+}
+.btn-retro-ghost:hover {
+  background: rgba(0,0,0,0.04);
+}
+.btn-retro-ghost:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0px #C4B5A0;
+}
+.dark .btn-retro-ghost {
+  color: #F0EDE8;
+  border-color: #F0EDE8;
+  box-shadow: 3px 3px 0px #6B5E4A;
+}
+.dark .btn-retro-ghost:active {
+  box-shadow: 0px 0px 0px #6B5E4A;
+}
+
+/* Retro card hover */
+.retro-hover {
+  transition: border-color 0.05s step-end, box-shadow 0.05s step-end;
+}
+.retro-hover:hover {
+  border-color: #D97706 !important;
+  box-shadow: 4px 4px 0px #D97706 !important;
+}
+.dark .retro-hover:hover {
+  border-color: #F59E0B !important;
+  box-shadow: 4px 4px 0px #F59E0B !important;
 }
 
 /* Section sub-header label */
