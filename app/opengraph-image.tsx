@@ -20,8 +20,8 @@ export default async function Image() {
   const quote = await getQuoteOfDay()
 
   const quoteText = quote
-    ? quote.q.length > 120
-      ? quote.q.slice(0, 117) + '\u2026'
+    ? quote.q.length > 90
+      ? quote.q.slice(0, 87) + '\u2026'
       : quote.q
     : null
 
@@ -35,7 +35,7 @@ export default async function Image() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-start',
-          padding: '72px 80px',
+          padding: '60px 72px',
           fontFamily: 'sans-serif',
           position: 'relative',
           overflow: 'hidden',
@@ -50,8 +50,8 @@ export default async function Image() {
             width: '280px',
             height: '280px',
             borderRadius: '50%',
-            border: '3px solid #D97706',
-            opacity: 0.15,
+            border: '5px solid #D97706',
+            opacity: 0.25,
           }}
         />
         <div
@@ -62,18 +62,18 @@ export default async function Image() {
             width: '200px',
             height: '200px',
             borderRadius: '50%',
-            border: '2px solid #D97706',
-            opacity: 0.1,
+            border: '4px solid #D97706',
+            opacity: 0.2,
           }}
         />
 
-        {/* Accent bar — wider for thumbnail visibility */}
+        {/* Accent bar */}
         <div
           style={{
-            width: '140px',
-            height: '6px',
+            width: '180px',
+            height: '8px',
             background: '#D97706',
-            marginBottom: '36px',
+            marginBottom: '28px',
             borderRadius: '3px',
           }}
         />
@@ -81,12 +81,12 @@ export default async function Image() {
         {/* Name */}
         <div
           style={{
-            fontSize: '76px',
+            fontSize: '96px',
             fontWeight: 700,
             color: '#1C1917',
-            letterSpacing: '-2.5px',
-            lineHeight: 1.05,
-            marginBottom: '16px',
+            letterSpacing: '-3px',
+            lineHeight: 1.0,
+            marginBottom: '12px',
           }}
         >
           Bao Pham
@@ -95,11 +95,11 @@ export default async function Image() {
         {/* Title */}
         <div
           style={{
-            fontSize: '28px',
-            fontWeight: 400,
+            fontSize: '40px',
+            fontWeight: 500,
             color: '#57534E',
-            letterSpacing: '1px',
-            marginBottom: '48px',
+            letterSpacing: '2px',
+            marginBottom: '36px',
           }}
         >
           Software Engineer
@@ -112,19 +112,19 @@ export default async function Image() {
               display: 'flex',
               flexDirection: 'row',
               alignItems: 'flex-start',
-              maxWidth: '780px',
+              maxWidth: '880px',
             }}
           >
-            {/* Large decorative opening quote mark */}
+            {/* Decorative opening quote mark */}
             <div
               style={{
-                fontSize: '96px',
+                fontSize: '120px',
                 fontWeight: 700,
                 color: '#D97706',
-                opacity: 0.4,
-                lineHeight: 0.8,
-                marginRight: '12px',
-                marginTop: '-8px',
+                opacity: 0.5,
+                lineHeight: 0.7,
+                marginRight: '16px',
+                marginTop: '-4px',
               }}
             >
               {'\u201C'}
@@ -132,21 +132,21 @@ export default async function Image() {
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <div
                 style={{
-                  fontSize: '22px',
-                  fontWeight: 400,
-                  color: '#57534E',
-                  lineHeight: 1.6,
-                  marginBottom: '8px',
+                  fontSize: '32px',
+                  fontWeight: 500,
+                  color: '#44403C',
+                  lineHeight: 1.45,
+                  marginBottom: '10px',
                 }}
               >
                 {quoteText}
               </div>
               <div
                 style={{
-                  fontSize: '15px',
-                  fontWeight: 400,
-                  color: '#A8A29E',
-                  letterSpacing: '0.5px',
+                  fontSize: '24px',
+                  fontWeight: 500,
+                  color: '#78716C',
+                  letterSpacing: '1px',
                 }}
               >
                 {`\u2014 ${quote!.a}`}
@@ -159,9 +159,9 @@ export default async function Image() {
         <div
           style={{
             position: 'absolute',
-            bottom: '72px',
-            left: '80px',
-            right: '80px',
+            bottom: '48px',
+            left: '72px',
+            right: '72px',
             display: 'flex',
             flexDirection: 'column',
           }}
@@ -169,9 +169,9 @@ export default async function Image() {
           <div
             style={{
               width: '100%',
-              height: '1px',
+              height: '2px',
               background: '#D5CFCA',
-              marginBottom: '20px',
+              marginBottom: '16px',
             }}
           />
           <div
@@ -184,20 +184,20 @@ export default async function Image() {
           >
             <div
               style={{
-                fontSize: '20px',
-                fontWeight: 500,
-                color: '#D97706',
-                letterSpacing: '1px',
+                fontSize: '28px',
+                fontWeight: 600,
+                color: '#B45309',
+                letterSpacing: '1.5px',
               }}
             >
               phambao.dev
             </div>
             <div
               style={{
-                fontSize: '15px',
-                fontWeight: 400,
-                color: '#A8A29E',
-                letterSpacing: '0.5px',
+                fontSize: '22px',
+                fontWeight: 500,
+                color: '#78716C',
+                letterSpacing: '1px',
               }}
             >
               Portfolio
