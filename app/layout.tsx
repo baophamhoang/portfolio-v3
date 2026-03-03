@@ -63,6 +63,9 @@ export const metadata: Metadata = {
     description: 'Building robust systems at the intersection of AI, healthcare, and full-stack engineering.',
     creator: '@baophamhoang',
   },
+  other: {
+    'og:image:secure_url': 'https://phambao.dev/opengraph-image',
+  },
 }
 
 export default function RootLayout({
@@ -70,20 +73,60 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const personJsonLd = JSON.stringify({
+  const profilePageJsonLd = JSON.stringify({
     '@context': 'https://schema.org',
-    '@type': 'Person',
+    '@type': 'ProfilePage',
+    dateModified: '2026-01-01T00:00:00Z',
+    mainEntity: {
+      '@type': 'Person',
+      name: 'Bao Pham',
+      alternateName: 'Pham Hoang Bao',
+      url: 'https://phambao.dev',
+      image: 'https://phambao.dev/opengraph-image',
+      jobTitle: 'Software Engineer',
+      description:
+        'Full-stack engineer with 4+ years of experience building production systems end-to-end — from backend APIs and AI integrations to polished frontends.',
+      email: 'phamhoangbao2710@gmail.com',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Da Nang',
+        addressCountry: 'VN',
+      },
+      worksFor: {
+        '@type': 'Organization',
+        name: 'Spartan',
+      },
+      knowsAbout: [
+        'React',
+        'Next.js',
+        'TypeScript',
+        'NestJS',
+        'Node.js',
+        'Python',
+        'FastAPI',
+        'PostgreSQL',
+        'AWS',
+        'Docker',
+        'Kubernetes',
+        'OpenAI',
+        'AI integrations',
+      ],
+      sameAs: ['https://github.com/baophamhoang', 'https://linkedin.com/in/baophamhoang'],
+    },
+  })
+
+  const websiteJsonLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
     name: 'Bao Pham',
-    alternateName: 'Pham Hoang Bao',
     url: 'https://phambao.dev',
-    jobTitle: 'Software Engineer',
-    sameAs: ['https://github.com/baophamhoang', 'https://linkedin.com/in/baophamhoang'],
   })
 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script type="application/ld+json">{personJsonLd}</script>
+        <script type="application/ld+json">{profilePageJsonLd}</script>
+        <script type="application/ld+json">{websiteJsonLd}</script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${vt323.variable} antialiased`}
