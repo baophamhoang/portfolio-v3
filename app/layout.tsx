@@ -28,7 +28,7 @@ const vt323 = VT323({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://phambao.dev'),
+  metadataBase: new URL('https://www.phambao.dev'),
   title: 'Bao Pham — Software Engineer',
   description:
     'Full-stack engineer who ships end-to-end — from scalable backends and AI integrations to polished frontends.',
@@ -48,12 +48,12 @@ export const metadata: Metadata = {
     'phambao dev',
   ],
   authors: [{ name: 'Bao Pham' }],
-  alternates: { canonical: 'https://phambao.dev' },
+  alternates: { canonical: 'https://www.phambao.dev' },
   openGraph: {
     title: 'Bao Pham — Software Engineer',
     description: 'Building robust systems at the intersection of AI, healthcare, and full-stack engineering.',
     type: 'website',
-    url: 'https://phambao.dev',
+    url: 'https://www.phambao.dev',
     siteName: 'Bao Pham',
     locale: 'en_US',
   },
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     creator: '@baophamhoang',
   },
   other: {
-    'og:image:secure_url': 'https://phambao.dev/opengraph-image',
+    'og:image:secure_url': 'https://www.phambao.dev/opengraph-image',
   },
 }
 
@@ -81,8 +81,8 @@ export default function RootLayout({
       '@type': 'Person',
       name: 'Bao Pham',
       alternateName: 'Pham Hoang Bao',
-      url: 'https://phambao.dev',
-      image: 'https://phambao.dev/opengraph-image',
+      url: 'https://www.phambao.dev',
+      image: 'https://www.phambao.dev/opengraph-image',
       jobTitle: 'Software Engineer',
       description:
         'Full-stack engineer with 4+ years of experience building production systems end-to-end — from backend APIs and AI integrations to polished frontends.',
@@ -119,7 +119,7 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Bao Pham',
-    url: 'https://phambao.dev',
+    url: 'https://www.phambao.dev',
   })
 
   return (
