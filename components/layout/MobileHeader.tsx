@@ -35,7 +35,7 @@ export function MobileHeader({ activePanel, setActivePanel }: MobileHeaderProps)
     <>
       {/* Fixed bar */}
       <header className="fixed top-0 left-0 right-0 z-50 h-11 lg:hidden flex items-center justify-between px-3
-        bg-[#F7F3EC]/95 dark:bg-[#0E0D0C]/95 backdrop-blur-sm border-b-2 border-amber-600">
+        bg-[#F7F3EC] dark:bg-[#0E0D0C] border-b-2 border-amber-600">
 
         {/* Left: BP logo → home */}
         <button type="button" onClick={() => handleNav('home')} aria-label="Go to home"

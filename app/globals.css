@@ -217,30 +217,42 @@ body {
   );
 }
 
-/* Retro scanlines overlay */
-.scanlines::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.06) 2px,
-    rgba(0, 0, 0, 0.06) 4px
-  );
-  pointer-events: none;
-  z-index: 10;
-  will-change: transform;
+/* Mobile panel ambient glow: radial gradient replaces the blur filter on small screens */
+@media (max-width: 1023px) {
+  .panel-glow-mobile {
+    background: radial-gradient(circle, rgba(217, 119, 6, 0.28) 0%, transparent 62%);
+  }
+  .dark .panel-glow-mobile {
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.32) 0%, transparent 62%);
+  }
 }
-.dark .scanlines::after {
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(255, 190, 60, 0.10) 0px,
-    rgba(255, 190, 60, 0.10) 1px,
-    transparent 1px,
-    transparent 3px
-  );
+
+/* Retro scanlines overlay */
+@media (min-width: 1024px) {
+  .scanlines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.06) 2px,
+      rgba(0, 0, 0, 0.06) 4px
+    );
+    pointer-events: none;
+    z-index: 10;
+    will-change: transform;
+  }
+  .dark .scanlines::after {
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(255, 190, 60, 0.10) 0px,
+      rgba(255, 190, 60, 0.10) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  }
 }
 
 /* Gradient text */

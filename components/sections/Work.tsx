@@ -139,7 +139,7 @@ export function Work({ experience }: WorkProps) {
   return (
     <section id="work" className="relative min-h-full py-10 px-6">
       {/* Ambient amber glow */}
-      <div className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-amber-500/8 dark:bg-amber-500/20 blur-3xl pointer-events-none rounded-full" />
+      <div className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-amber-500/8 dark:bg-amber-500/20 lg:blur-3xl pointer-events-none rounded-full panel-glow-mobile" />
       {/* Decorative watermark */}
       <div className="absolute top-4 right-6 font-pixel text-[8rem] leading-none text-ink-900/[0.05] dark:text-white/[0.04] select-none pointer-events-none">
         02

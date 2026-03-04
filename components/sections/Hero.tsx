@@ -36,7 +36,7 @@ export function Hero({ profile, setActivePanel }: HeroProps) {
   return (
     <section id="hero" className="relative overflow-hidden min-h-[100dvh] h-full flex items-center py-12 lg:py-16">
       {/* Single amber glow top-right */}
-      <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-amber-300/10 dark:bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-amber-300/10 dark:bg-amber-500/15 rounded-full lg:blur-3xl pointer-events-none panel-glow-mobile" />
 
       <div className="relative max-w-5xl mx-auto px-6 w-full">
         <div className="grid lg:grid-cols-[1fr_360px] gap-10 lg:gap-12 items-center">
