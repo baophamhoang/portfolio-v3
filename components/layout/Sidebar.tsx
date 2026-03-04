@@ -158,9 +158,9 @@ export function Sidebar({ activePanel, setActivePanel }: SidebarProps) {
 
       {/* ── Mobile: ▲▼ buttons only ── */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.6, scale: 1 }}
-        transition={{ delay: 0.5 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.6 }}
+        transition={{ delay: 0.2, duration: 0.2 }}
         className="fixed bottom-6 right-6 z-50 lg:hidden flex flex-col gap-2 items-center"
       >
         {(() => {
