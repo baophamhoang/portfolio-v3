@@ -156,13 +156,9 @@ export function PortfolioShell({
           {activePanel === 'home' && (
             <motion.div
               key="home"
-              initial={{ opacity: 0, scale: 1.03 }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                transition: { duration: 0.3, ease },
-              }}
-              exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.22 } }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0, transition: { duration: 0.3, ease } }}
+              exit={{ opacity: 0, y: -8, transition: { duration: 0.22 } }}
               className="absolute inset-0 overflow-y-auto overflow-x-hidden"
               onWheel={handleWheel}
             >
@@ -174,13 +170,9 @@ export function PortfolioShell({
           {activePanel === 'work' && (
             <motion.div
               key="work"
-              initial={{ opacity: 0, scale: 1.03 }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                transition: { duration: 0.3, ease },
-              }}
-              exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.22 } }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0, transition: { duration: 0.3, ease } }}
+              exit={{ opacity: 0, y: -8, transition: { duration: 0.22 } }}
               className="absolute inset-0 overflow-y-auto overflow-x-hidden"
               onWheel={handleWheel}
             >
@@ -192,13 +184,9 @@ export function PortfolioShell({
           {activePanel === 'projects' && (
             <motion.div
               key="projects"
-              initial={{ opacity: 0, scale: 1.03 }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                transition: { duration: 0.3, ease },
-              }}
-              exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.22 } }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0, transition: { duration: 0.3, ease } }}
+              exit={{ opacity: 0, y: -8, transition: { duration: 0.22 } }}
               className="absolute inset-0 overflow-y-auto overflow-x-hidden"
               onWheel={handleWheel}
             >
@@ -210,13 +198,9 @@ export function PortfolioShell({
           {activePanel === 'skills' && (
             <motion.div
               key="skills"
-              initial={{ opacity: 0, scale: 1.03 }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                transition: { duration: 0.3, ease },
-              }}
-              exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.22 } }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0, transition: { duration: 0.3, ease } }}
+              exit={{ opacity: 0, y: -8, transition: { duration: 0.22 } }}
               className="absolute inset-0 overflow-y-auto overflow-x-hidden"
               onWheel={handleWheel}
             >
@@ -228,13 +212,9 @@ export function PortfolioShell({
           {activePanel === 'contact' && (
             <motion.div
               key="contact"
-              initial={{ opacity: 0, scale: 1.03 }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                transition: { duration: 0.3, ease },
-              }}
-              exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.22 } }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0, transition: { duration: 0.3, ease } }}
+              exit={{ opacity: 0, y: -8, transition: { duration: 0.22 } }}
               className="absolute inset-0 overflow-y-auto overflow-x-hidden"
               onWheel={handleWheel}
             >
