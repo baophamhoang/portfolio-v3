@@ -46,6 +46,8 @@ export const metadata: Metadata = {
     'Pham Bao software engineer',
     'phambao',
     'phambao dev',
+    "Bao Pham",
+    "Pham Hoang Bao"
   ],
   authors: [{ name: 'Bao Pham' }],
   alternates: { canonical: 'https://www.phambao.dev' },
