@@ -4,7 +4,7 @@
 -- Step 1: Add stats column (JSON-encoded array of { value, label })
 ALTER TABLE projects ADD COLUMN stats TEXT;
 
--- Step 2: Populate Paratus stats (Retell analytics, May 11 - Jun 7 2026)
+-- Step 2: Populate Paratus stats (Retell analytics, May 11 - Jun 7 2026 + platform)
 UPDATE projects
-SET stats = '[{"value":"14.5K","label":"AI calls / mo"},{"value":"99.95%","label":"inbound pickup"},{"value":"1.7s","label":"median latency"},{"value":"<1%","label":"neg. sentiment"}]'
+SET stats = '[{"value":"14.5K","label":"AI calls / mo"},{"value":"1.7s","label":"median latency"},{"value":"4","label":"EHR integrations"},{"value":"10+","label":"clinics live"}]'
 WHERE title = 'Paratus Service Platform';
