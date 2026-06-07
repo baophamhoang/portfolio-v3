@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     description: 'Building robust systems at the intersection of AI, healthcare, and full-stack engineering.',
     type: 'website',
     url: 'https://www.phambao.dev',
-    siteName: 'Bao Pham',
+    siteName: 'Pham Bao Dev',
     locale: 'en_US',
   },
   twitter: {
@@ -120,7 +120,8 @@ export default function RootLayout({
   const websiteJsonLd = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Bao Pham',
+    name: 'Pham Bao Dev',
+    alternateName: 'Bao Pham',
     url: 'https://www.phambao.dev',
   })
 
