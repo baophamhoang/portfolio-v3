@@ -93,7 +93,7 @@ function ExpandedCard({ project }: { project: Project }) {
       <div className="p-6 flex flex-col gap-3 flex-1 overflow-y-auto min-h-0">
         <span className="font-pixel text-lg text-ink-500 dark:text-dark-text-secondary flex items-center">
           {project.year}
-          <Dot/>
+          <Dot />
           {project.type === 'company' ? project.company_name : 'Personal'}
         </span>
         <div className="flex items-center gap-2">
@@ -174,9 +174,6 @@ function ExpandedCard({ project }: { project: Project }) {
             </span>
           )}
         </div>
-        <span className="text-[11px] font-mono text-ink-300 dark:text-dark-muted">
-          ↩ click to collapse
-        </span>
       </div>
     </div>
   );
@@ -205,7 +202,6 @@ function OthersMiniGrid({
             bg-cream-50 dark:bg-dark-surface-2
             ${lastAlone && i === others.length - 1 ? 'col-span-2' : ''}`}
           onClick={() => setActiveId(String(p.id))}
-
           transition={spring}
         >
           <CollapsedCard project={p} />
@@ -346,7 +342,6 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
                       layoutId={`proj-${p.id}`}
                       className={`${cardBase} cursor-pointer ${lastAlone ? 'col-span-2' : ''}`}
                       onClick={() => setActiveId(String(p.id))}
-            
                       transition={spring}
                     >
                       <CollapsedCard project={p} />
@@ -398,7 +393,6 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
                           : 'flex-1 min-h-0'
                       }`}
                       onClick={() => setActiveId(String(p.id))}
-            
                       transition={spring}
                     >
                       <CollapsedCard project={p} />
@@ -433,7 +427,6 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
                           : 'flex-1 min-h-0'
                       }`}
                       onClick={() => setActiveId(String(p.id))}
-            
                       transition={spring}
                     >
                       <CollapsedCard project={p} />
