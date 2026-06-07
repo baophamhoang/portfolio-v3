@@ -122,6 +122,12 @@ export const seedProjects: Project[] = [
     live_url: undefined,
     type: 'company',
     company_name: 'Spartan',
+    stats: [
+      { value: '14.5K', label: 'AI calls / mo' },
+      { value: '99.95%', label: 'inbound pickup' },
+      { value: '1.7s', label: 'median latency' },
+      { value: '<1%', label: 'neg. sentiment' },
+    ],
   },
   {
     id: 2,
