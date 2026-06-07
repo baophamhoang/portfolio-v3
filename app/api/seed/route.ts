@@ -83,8 +83,8 @@ export async function POST(request: Request) {
     await db.execute('DELETE FROM projects')
     for (const project of seedProjects) {
       await db.execute({
-        sql: `INSERT INTO projects (title, description, tech_stack, github_url, live_url, image_url, featured, color, sort_order, year)
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        sql: `INSERT INTO projects (title, description, tech_stack, github_url, live_url, image_url, featured, color, sort_order, year, type, company_name, stats)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         args: [
           project.title,
           project.description,
@@ -96,6 +96,9 @@ export async function POST(request: Request) {
           project.color,
           project.sort_order,
           project.year,
+          project.type,
+          project.company_name ?? null,
+          project.stats ? JSON.stringify(project.stats) : null,
         ],
       })
     }

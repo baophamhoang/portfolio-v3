@@ -66,7 +66,8 @@ export async function initDb() {
       sort_order INTEGER DEFAULT 0,
       year INTEGER DEFAULT 2024,
       type TEXT DEFAULT 'personal',
-      company_name TEXT
+      company_name TEXT,
+      stats TEXT
     );
 
     CREATE TABLE IF NOT EXISTS skills (

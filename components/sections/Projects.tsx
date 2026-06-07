@@ -93,7 +93,7 @@ function ExpandedCard({ project }: { project: Project }) {
       <div className="p-6 flex flex-col gap-3 flex-1 overflow-y-auto min-h-0">
         <span className="font-pixel text-lg text-ink-500 dark:text-dark-text-secondary flex items-center">
           {project.year}
-          <Dot/>
+          <Dot />
           {project.type === 'company' ? project.company_name : 'Personal'}
         </span>
         <div className="flex items-center gap-2">
@@ -110,6 +110,26 @@ function ExpandedCard({ project }: { project: Project }) {
         <p className="text-sm text-ink-600 dark:text-dark-text leading-relaxed flex-1">
           {project.description}
         </p>
+        {project.stats && project.stats.length > 0 && (
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-cream-300 dark:bg-amber-900/40 border border-cream-300 dark:border-amber-900/40">
+            {project.stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="flex flex-col gap-0.5 px-3 py-2 bg-cream-50 dark:bg-dark-surface-2"
+              >
+                <span
+                  className="font-pixel text-xl leading-none"
+                  style={{ color: project.color }}
+                >
+                  {stat.value}
+                </span>
+                <span className="text-[10px] font-mono uppercase tracking-wide text-ink-400 dark:text-dark-muted leading-tight">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
         <div className="flex flex-wrap gap-1.5">
           {project.tech_stack.map((tech) => (
             <span
@@ -154,9 +174,6 @@ function ExpandedCard({ project }: { project: Project }) {
             </span>
           )}
         </div>
-        <span className="text-[11px] font-mono text-ink-300 dark:text-dark-muted">
-          ↩ click to collapse
-        </span>
       </div>
     </div>
   );
@@ -185,7 +202,6 @@ function OthersMiniGrid({
             bg-cream-50 dark:bg-dark-surface-2
             ${lastAlone && i === others.length - 1 ? 'col-span-2' : ''}`}
           onClick={() => setActiveId(String(p.id))}
-
           transition={spring}
         >
           <CollapsedCard project={p} />
@@ -326,7 +342,6 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
                       layoutId={`proj-${p.id}`}
                       className={`${cardBase} cursor-pointer ${lastAlone ? 'col-span-2' : ''}`}
                       onClick={() => setActiveId(String(p.id))}
-            
                       transition={spring}
                     >
                       <CollapsedCard project={p} />
@@ -378,7 +393,6 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
                           : 'flex-1 min-h-0'
                       }`}
                       onClick={() => setActiveId(String(p.id))}
-            
                       transition={spring}
                     >
                       <CollapsedCard project={p} />
@@ -413,7 +427,6 @@ export function Projects({ projects: rawProjects }: ProjectsProps) {
                           : 'flex-1 min-h-0'
                       }`}
                       onClick={() => setActiveId(String(p.id))}
-            
                       transition={spring}
                     >
                       <CollapsedCard project={p} />

@@ -10,6 +10,16 @@ function parseTechStack(raw: string | null): string[] {
   }
 }
 
+function parseStats(raw: string | null): { value: string; label: string }[] | undefined {
+  if (!raw) return undefined
+  try {
+    const parsed = JSON.parse(raw)
+    return Array.isArray(parsed) && parsed.length > 0 ? parsed : undefined
+  } catch {
+    return undefined
+  }
+}
+
 export async function getProfile(): Promise<Profile | null> {
   const db = getDb()
   const result = await db.execute('SELECT * FROM profile WHERE id = 1 LIMIT 1')
@@ -71,6 +81,7 @@ export async function getProjects(): Promise<Project[]> {
     year: Number(row.year ?? 2024),
     type: (row.type as 'company' | 'personal') ?? 'personal',
     company_name: row.company_name ? String(row.company_name) : undefined,
+    stats: parseStats(row.stats as string | null),
   }))
 }
 

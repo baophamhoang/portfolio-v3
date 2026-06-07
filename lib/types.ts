@@ -42,6 +42,7 @@ export interface Project {
   year: number
   type: 'company' | 'personal'
   company_name?: string
+  stats?: { value: string; label: string }[]
 }
 
 export interface Skill {
